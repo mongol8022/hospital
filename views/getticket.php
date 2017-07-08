@@ -17,18 +17,18 @@ print("</select>\n");
 }
 ?>
 
-
-<form role="form" action="index.php" method="post">
-<?php if(!empty($firms)): ?>
+</div>
+<form action="index.php" method="post">
+<?php if(isset($datasets["firms"])): ?>
  <div class="form-group">
  <?php 
  if (isset($positions["firms"]))
  {
-    gen_dropdown("firm", "Медицинское учреждение:", $firms, $positions["firms"]);    
+    gen_dropdown("firm", "Медицинское учреждение:", $datasets["firms"], $positions["firms"]);    
  }
  else
  {
-     gen_dropdown("firm", "Медицинское учреждение:", $firms);
+     gen_dropdown("firm", "Медицинское учреждение:", $datasets["firms"]);
  }
  ?>
   </div>
@@ -39,46 +39,45 @@ print("</select>\n");
 <?php endif; ?>
 
 
-<?php if(!empty($departments)): ?>
+<?php if(isset($datasets["departments"]) && !empty($datasets["departments"])): ?>
 <div class="form-group">
  <?php
     if (isset($positions["departments"]))
     {
-        gen_dropdown("department", "Отделение:", $departments, $positions["departments"]);    
+        gen_dropdown("department", "Отделение:", $datasets["departments"], $positions["departments"]);    
     }
     else
     {
-         gen_dropdown("department", "Отделение:", $departments);
+         gen_dropdown("department", "Отделение:", $datasets["departments"]);
     }
  ?>
  </div>
 <?php endif; ?>
 </form>
 
-<?php if(isset($departments) && empty($departments)): ?>
+<?php if(isset($datasets["departments"]) && empty($datasets["departments"])): ?>
     <div class="alert alert-info">
       К сожалению для выбранного учреждения отсутствуют подразделения.
     </div>
 <?php endif; ?>
 
-<?php if(!empty($workplaces)): ?>
+<?php if(isset($datasets["workplaces"]) && !empty($datasets["workplaces"])): ?>
     <div class="form-group">
     <?php
         if (isset($positions["workplaces"]))
         {
-            gen_dropdown("workplace", "Врач:", $workplaces, $positions["workplaces"]);    
+            gen_dropdown("workplace", "Врач:", $datasets["workplaces"], $positions["workplaces"]);    
         }
         else
         {
-            gen_dropdown("workplace", "Врач:", $workplaces);
+            gen_dropdown("workplace", "Врач:", $datasets["workplaces"]);
         }
      ?>
      </div>
 <?php endif; ?>
-</form>
-
-<?php if(isset($departments) && empty($departments)): ?>
-<div class="alert alert-info">
+<?php if(isset($datasets["workplaces"]) && empty($datasets["workplaces"])): ?>
+<div class="alert alert-info" id="infoalert">
   К сожалению для выбранного подразделения отсутствуют врачи.
 </div>
 <?php endif; ?>
+</form>

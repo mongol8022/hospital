@@ -63,10 +63,32 @@
                     </ul>
                 <?php endif ?>
                 <?php if (empty($_SESSION["user_id"])): ?>
-                        <li><a href="medical.php">Медицинские учреждения города</a></li>
+                         <?php
+                         if ($view == "getticket.php")
+                         {
+                            print("<li class=\"active\">");
+                         }
+                         else
+                         {
+                             print("<li>");
+                         }
+                         ?>
+                         <a href="index.php"><span class="glyphicon glyphicon-ok"></span> Записаться на прием</a></li>
+                         <li><a href="cancellation.php"><span class="glyphicon glyphicon-remove"></span> Отмена приема</a></li>
+                        <li><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+                         <?php
+                         if ($view == "login_form.php")
+                         {
+                            print("<li class=\"active\">");
+                         }
+                         else
+                         {
+                             print("<li>");
+                         }
+                         ?>
+                             <a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
                         </ul>
                 <?php endif ?>
                     </div>
