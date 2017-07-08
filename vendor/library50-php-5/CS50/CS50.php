@@ -302,7 +302,7 @@
                 {
                     // connect to database
                     $handle = new PDO(
-                        "mysql:dbname=" . self::$config["database"]["name"] . ";host=" . self::$config["database"]["host"],
+                        "mysql:charset=utf8;dbname=" . self::$config["database"]["name"] . ";host=" . self::$config["database"]["host"],
                         self::$config["database"]["username"],
                         self::$config["database"]["password"]
                     );
