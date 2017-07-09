@@ -81,26 +81,26 @@
         </div>
     <?php endif; ?>
     <?php if(isset($positions["cur_date"])): ?> 
-<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+        <div class="form-group">
+            <div class="panel panel-default">
+              <div class="panel-heading"><b>Дата приема</b></div>
+              <div class="panel-body">
+          <div id="datetimepicker12"></div>
+              </div>
             </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker2').datetimepicker({
-                });
-            });
-        </script>
     </div>
-</div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker12').datetimepicker({
+                inline: true,
+                sideBySide: true,
+                format: 'DD.MM.YYYY',
+                minDate: moment(),
+                maxDate: moment().add(30, 'days'),
+                locale: 'ru'
+            });
+        });
+    </script>
 <?php endif; ?>
 </form>
 </div>
