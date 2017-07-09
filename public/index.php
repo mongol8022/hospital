@@ -38,7 +38,7 @@
         }
         if (!empty($_POST["workplace"]) && $datasets["workplaces"])
         {
-            if ($_POST["appointmentdate"])
+            if (!empty($_POST["appointmentdate"]))
             {
                 $cur_date = $_POST["appointmentdate"];
             }
@@ -46,10 +46,18 @@
             {
                 $cur_date = date('d.m.Y');
             }
-            $appointments = CS50::query("SELECT workplaces.id, CONCAT(empl_surname, ' ', empl_name, ' ', empl_lastname, '. ', workplaces.name) as name FROM departments,workplaces where workplaces.department_id=departments.id and departments.id = ? order by 2", $_POST["department"]);
+            $appointments = CS50::query("SELECT queues.id, services.name AS servicename, CONCAT( TIME( queues.time_begin ), '-', TIME( queues.time_begin + INTERVAL services.duration "
+    . "MINUTE ) ) "
+    . "FROM queues, schedule, services, workplaces "
+    . "WHERE queues.schedule_id = schedule.id "
+    . "AND schedule.service_id = services.id "
+    . "AND workplaces.id = schedule.worplace_id "
+    . "AND workplaces.id = ? "
+    . "AND schedule.week_day = WEEKDAY( ? )", $_POST["workplace"], $cur_date);
             $positions["workplaces"] =  $_POST["workplace"];
+            $positions["cur_date"] = $cur_date;
         }
-        //форме передается массив firms, содержащий id и name
+        //форме передается массив массивов данных для заполнения данными элементов формы, а также массив выбранных значений для каждого элемента (если они есть)
         render("getticket.php", ["title" => "Запись на приём", "positions" => $positions, "datasets" => $datasets]);
      }
  }
