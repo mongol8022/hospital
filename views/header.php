@@ -74,7 +74,17 @@
                          }
                          ?>
                          <a href="index.php"><span class="glyphicon glyphicon-ok"></span> Записаться на прием</a></li>
-                         <li><a href="cancellation.php"><span class="glyphicon glyphicon-remove"></span> Отмена приема</a></li>
+                         <?php
+                         if ($view == "cancel_form.php")
+                         {
+                            print("<li class=\"active\">");
+                         }
+                         else
+                         {
+                             print("<li>");
+                         }
+                         ?>
+                         <a href="cancellation.php"><span class="glyphicon glyphicon-remove"></span> Отмена приема</a></li>
                         <li><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -93,4 +103,4 @@
                 <?php endif ?>
                     </div>
                 </nav>
-            <div id="middle">
+<!--            <div id="middle"> -->

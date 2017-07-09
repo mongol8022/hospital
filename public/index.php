@@ -36,6 +36,19 @@
             $positions["departments"] =  $_POST["department"];
             $datasets["workplaces"] = $workplaces;
         }
+        if (!empty($_POST["workplace"]) && $datasets["workplaces"])
+        {
+            if ($_POST["appointmentdate"])
+            {
+                $cur_date = $_POST["appointmentdate"];
+            }
+            else
+            {
+                $cur_date = date('d.m.Y');
+            }
+            $appointments = CS50::query("SELECT workplaces.id, CONCAT(empl_surname, ' ', empl_name, ' ', empl_lastname, '. ', workplaces.name) as name FROM departments,workplaces where workplaces.department_id=departments.id and departments.id = ? order by 2", $_POST["department"]);
+            $positions["workplaces"] =  $_POST["workplace"];
+        }
         //форме передается массив firms, содержащий id и name
         render("getticket.php", ["title" => "Запись на приём", "positions" => $positions, "datasets" => $datasets]);
      }
