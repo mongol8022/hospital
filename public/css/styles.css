@@ -45,3 +45,48 @@
     /* surround with whitespace */
     margin: 20px;
 }
+
+.header-global {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    height: auto;
+    padding: 5px 0 10px 0;
+    border-bottom: 1px solid #e62246;
+    background: #fff;
+    line-height: 1.4;
+}
+
+.wrapper-header {
+    display: block;
+    height: 60px;
+    padding: 10px 10px 0 30px;
+}
+
+.logo {
+    float: left;
+    position: relative;
+}
+
+#logo {
+    width: 50px;
+}
+
+.logo-header {
+    
+    display: inline;
+}
+
+.course-header {
+    margin: 0px 10px 0px 10px;
+    display: inline-block;
+    width: 65%;
+    font-weight: 400;
+}
+
+.start {
+    font: inherit;
+    font-weight: bold;
+}
+
+.login {
+    float: right;
+}

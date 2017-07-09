@@ -32,12 +32,20 @@
 
     <body>
 
+        <header class="header-global">
+            <div class=" wrapper-header nav-container">
+                <div class="logo">
+                    <a href="#">
+                        <img src="img/snake.jpg" alt="#" id="logo">
+                    </a>
+            </div>
+            <div class="course-header">
+                <h3>Онлайн-регистратура г. Краматорска</h3>
+            </div>
+        </header>
+        
         <div class="container">
-
-            <div id="top">
-                    <a href="/"><img alt="C$50 Finance" src="/img/logo.png"/></a>
-                </div>
-                    <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default">
                       <div class="container-fluid">
                          <ul class="nav navbar-nav">
                 <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] = 'employ'): ?>
