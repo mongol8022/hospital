@@ -24,6 +24,10 @@
 
         <script src="/js/scripts.js"></script>
 
+        <!-- bootstrap datetimepicker -->
+        <script src="/js/moment.min.js"></script>
+        <script src="/js/bootstrap-datetimepicker.min.js"></script>
+        <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     </head>
 
     <body>
