@@ -6,9 +6,9 @@
         <meta charset="UTF-8">
 
         <!-- http://getbootstrap.com/ -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
-        <link href="/css/styles.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
 
         <?php if (isset($title)): ?>
             <title>Электронная регистратура: <?= htmlspecialchars($title) ?></title>
