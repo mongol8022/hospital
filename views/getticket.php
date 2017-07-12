@@ -107,7 +107,7 @@
                           </div>
                           <div class="modal-body">
                               <div>
-                                    <form id="booking" action="index.php" method="post">
+                                    <form id="booking" action="index.php" method="get">
                                         <div class="form-group">
                                             <input autofocus required class="form-control" name="surname" placeholder="Фамилия" type="text"/>
                                         </div>
@@ -124,14 +124,16 @@
                                        <div class="form-group">
                                             <input autofocus required class="form-control" name="email" placeholder="Электронная почта" type="email"/>
                                        </div>
+                            <!--         <a name=bookingmodal href="#" class="btn btn-primary" role="button">Записаться</a> -->
+                                        <button type="submit" class="btn btn-primary">Записаться</button>
+                                         <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>   
                                     </form>
                                 </div>
                           </div>
-                               <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                                   <!-- <button type="button" class="btn btn-primary">Записаться</button> -->
-                                    <a name=bookingmodal href="#" class="btn btn-primary" role="button">Записаться</a>
-                              </div>
+                            <!--  <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Записаться</button>
+                               
+                              </div> -->
                       </div> <!-- /.modal-content -->';
                  </div> <!-- /.modal-dialog -->';
             </div> <!-- /.modal -->';        
