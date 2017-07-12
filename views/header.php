@@ -9,9 +9,9 @@
         <meta charset="UTF-8">
 
         <!-- http://getbootstrap.com/ -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
-        <link href="/css/styles.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
 
         <?php if (isset($title)): ?>
             <title>Электронная регистратура: <?= htmlspecialchars($title) ?></title>
@@ -31,6 +31,7 @@
         <script src="/js/moment-with-locales.min.js"></script>
         <script src="/js/bootstrap-datetimepicker.min.js"></script>
         <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>

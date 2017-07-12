@@ -49,16 +49,17 @@
 .header-global {
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     height: auto;
-    padding: 5px 0 10px 0;
+    padding: 5px 0px 5px 0px;
     border-bottom: 1px solid #e62246;
     background: #fff;
     line-height: 1.4;
 }
 
 .wrapper-header {
+    margin: 0 auto;
     display: block;
     height: 60px;
-    padding: 10px 10px 0 30px;
+    width: 1140px;
 }
 
 .logo {
@@ -89,4 +90,52 @@
 
 .login {
     float: right;
+}
+
+.firm-box .address-box b{
+    /*display: block;*/
+    /*float: left;*/
+    /*margin-right: 10px;*/
+    
+}
+.firm-box .address-box div{
+    
+}
+.firm-box .address-box{
+    text-align: left;
+}
+.firm-box{
+    color: black;
+    outline: 1px solid #0275d8;
+    margin-right: 3%;
+    height: 150px;
+    width: 31.333%;
+    padding-top: 0px;
+    cursor: pointer;
+}
+
+.firms-list .firm-box:nth-child(3){
+    margin-right: 0;
+
+.footer-center {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    padding-top: 12px;
+}
+
+.footer-middle-left {
+    text-align: center;
+    padding-top: 2px;
+}
+
+.footer-middle-right {
+    text-align: center;
+}
+
+.footer-right {
+    padding-top: 7px;
+
 }
