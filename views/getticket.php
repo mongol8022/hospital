@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-default row">
                 <div class="panel-heading">Запись на прием</div>
                 <div class="panel-body">
                     <form id="appoint" action="index.php" method="post">
@@ -107,27 +107,37 @@
                           </div>
                           <div class="modal-body">
                               <div>
-                                    <form id="booking" action="index.php" method="get">
-                                        <div class="form-group">
-                                            <input autofocus required class="form-control" name="surname" placeholder="Фамилия" type="text"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input autofocus required class="form-control" name="name" placeholder="Имя" type="text"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input autofocus required class="form-control" name="lastname" placeholder="Отчество" type="text"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dateborn">Дата рождения</label>
-                                            <input autofocus required class="form-control" name="dateborn" type="date"/>
-                                       </div>
-                                       <div class="form-group">
-                                            <input autofocus required class="form-control" name="email" placeholder="Электронная почта" type="email"/>
-                                       </div>
+                                    <form id="booking" action="booking.php">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <input autofocus required class="form-control" name="surname" placeholder="Фамилия" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input autofocus required class="form-control" name="name" placeholder="Имя" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input autofocus required class="form-control" name="lastname" placeholder="Отчество" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dateborn">Дата рождения</label>
+                                                <input autofocus required class="form-control" name="dateborn" type="date"/>
+                                           </div>
+                                           <div class="form-group">
+                                                <input autofocus required class="form-control" name="email" placeholder="Электронная почта" type="email"/>
+                                           </div>
                             <!--         <a name=bookingmodal href="#" class="btn btn-primary" role="button">Записаться</a> -->
-                                        <button type="submit" class="btn btn-primary">Записаться</button>
-                                         <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>   
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#confirm-submit">Записаться</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>  
+                                            </div>
+                                        </fieldset>
                                     </form>
+                                <script type="text/javascript">
+                                $(document).on('click', '[type="submit"]', function() {
+                                    alert('444');
+                                    return false;
+                                };
+                                </script>
                                 </div>
                           </div>
                             <!--  <div class="modal-footer">
@@ -140,16 +150,16 @@
                         <?php 
                             if(isset($datasets["appointments"]) && !empty($datasets["appointments"]))
                             {
-                                echo '<div class="panel panel-default">';
+                                echo '<div class="panel panel-default" row>';
                                 echo '<div class="panel-heading"><b>Доступные приемы</b></div>';
                                 echo '<div class="panel-body">';
                                 foreach ($datasets["appointments"] as $appointment)
                                     {
-                                print("<a data-toggle=\"modal\" href=\"#\" data-target=\"#myModal\"  class=\"btn btn-success btn-lg\" role=\"button\">".$appointment["name"]."</a>");
+                                print("<button type=\"button\" id=\"freeappts\" name=\"".$appointment["id"]."\" data-toggle=\"modal\" data-target=\"#myModal\"  class=\"btn btn-success btn-lg\" role=\"button\" onclick=\"window.queue_id = this.getAttribute('name');\">".$appointment["name"]."</button>\n");
                                     }
                                 echo '</div>';
                                 echo '</div>';
-                                echo '</div>';
+//                                echo '</div>';
                             }
                             if (isset($datasets["appointments"]) && empty($datasets["appointments"]))
                             {
@@ -159,8 +169,6 @@
                                 echo '</div>';
                             }
                         ?>
-        <?php endif; ?>
-        </div>
 <script type="text/javascript">
        /*        $(function () { */
             $('#datetimepicker12').datetimepicker(
@@ -180,12 +188,14 @@
             window.scrollTo(0, document.body.scrollHeight);
 /*        }); */
     </script>
+        </div>
+        <?php endif; ?>
                   </form>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-default row">
                 <div class="panel-heading">Информация</div>
                     <div class="panel-body">test</div>
             </div>
@@ -193,7 +203,15 @@
     </div>
 </div>
 
+
 <script>
+//  freeappts.onclick = function() { // перезапишет существующий обработчик
+//   window.queue_id = this.getAttribute("name");
+//   alert(window.queue_id);
+//  };
+</script>
+<script>
+
             $(".alert").delay(4000).slideUp(200, function() {
                 $(this).alert('close');
             });
