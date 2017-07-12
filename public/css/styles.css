@@ -90,3 +90,28 @@
 .login {
     float: right;
 }
+.firm-box .address-box b{
+    /*display: block;*/
+    /*float: left;*/
+    /*margin-right: 10px;*/
+    
+}
+.firm-box .address-box div{
+    
+}
+.firm-box .address-box{
+    text-align: left;
+}
+.firm-box{
+    color: black;
+    outline: 1px solid #0275d8;
+    margin-right: 3%;
+    height: 150px;
+    width: 31.333%;
+    padding-top: 0px;
+    cursor: pointer;
+}
+
+.firms-list .firm-box:nth-child(3){
+    margin-right: 0;
+}
