@@ -1,3 +1,6 @@
+<?php
+ date_default_timezone_set("Europe/Kiev");
+?>
 <!DOCTYPE html>
 
 <html>
@@ -44,7 +47,8 @@
             </div>
         </header>
         
-        <div class="container">
+        <div class="row">
+             <div class="col-md-12">
                 <nav class="navbar navbar-default">
                       <div class="container-fluid">
                          <ul class="nav navbar-nav">
@@ -115,4 +119,6 @@
                 <?php endif ?>
                     </div>
                 </nav>
+            </div>
+        </div>
 <!--            <div id="middle"> -->
