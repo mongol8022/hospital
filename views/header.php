@@ -48,8 +48,8 @@
             </div>
         </header>
         
-        <div class="row">
-             <div class="col-md-12">
+        <div class="container">
+            
                 <nav class="navbar navbar-default">
                       <div class="container-fluid">
                          <ul class="nav navbar-nav">
