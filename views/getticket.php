@@ -16,7 +16,6 @@
     print("</select>\n");
     }
 ?>
-
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -46,9 +45,8 @@
                             ?>
                         </div>
                         <?php else: ?>
-                            <div class="alert alert-info">К сожалению в данный момент нет доступных медицинских учреждений.</div>
+                        <div class="alert alert-info">К сожалению в данный момент нет доступных медицинских учреждений.</div>
                         <?php endif; ?>
-
                         <?php if(isset($datasets["departments"]) && !empty($datasets["departments"])): ?>
                         <div class="form-group">
                             <?php
@@ -63,7 +61,6 @@
                             ?>
                         </div>
                         <?php endif; ?>
-
     <?php if(isset($datasets["departments"]) && empty($datasets["departments"])): ?>
         <div id="infoalert" class="alert alert-info">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -135,8 +132,8 @@
                                 <script type="text/javascript">
                                 $(document).on('click', '[type="submit"]', function() {
                                     alert('444');
-                                    return false;
-                                };
+                                    return false; 
+                                    });
                                 </script>
                                 </div>
                           </div>
@@ -144,10 +141,10 @@
                                 <button type="button" class="btn btn-primary">Записаться</button>
                                
                               </div> -->
-                      </div> <!-- /.modal-content -->';
-                 </div> <!-- /.modal-dialog -->';
-            </div> <!-- /.modal -->';        
-                        <?php 
+                      				</div> <!-- /.modal-content -->';
+                 				</div> <!-- /.modal-dialog -->';
+           					</div> <!-- /.modal -->';        
+                        	<?php 
                             if(isset($datasets["appointments"]) && !empty($datasets["appointments"]))
                             {
                                 echo '<div class="panel panel-default" row>';
@@ -202,16 +199,7 @@
         </div>
     </div>
 </div>
-
-
 <script>
-//  freeappts.onclick = function() { // перезапишет существующий обработчик
-//   window.queue_id = this.getAttribute("name");
-//   alert(window.queue_id);
-//  };
-</script>
-<script>
-
             $(".alert").delay(4000).slideUp(200, function() {
                 $(this).alert('close');
             });
