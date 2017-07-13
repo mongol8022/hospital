@@ -43,7 +43,7 @@
                                     gen_dropdown("firm", "Медицинское учреждение:", $datasets["firms"]);
                                 }
                             ?>
-                        </div>
+                       </div>
                         <?php else: ?>
                         <div class="alert alert-info">К сожалению в данный момент нет доступных медицинских учреждений.</div>
                         <?php endif; ?>
@@ -59,7 +59,7 @@
                                     gen_dropdown("department", "Отделение:", $datasets["departments"]);
                                 }
                             ?>
-                        </div>
+                       </div>
                         <?php endif; ?>
     <?php if(isset($datasets["departments"]) && empty($datasets["departments"])): ?>
         <div id="infoalert" class="alert alert-info">
@@ -80,7 +80,7 @@
                     gen_dropdown("workplace", "Врач:", $datasets["workplaces"]);
                 }
              ?>
-        </div>
+            </div>
     <?php endif; ?>
     <?php if(isset($datasets["workplaces"]) && empty($datasets["workplaces"])): ?>
         <div class="alert alert-info" id="infoalert">
@@ -95,16 +95,49 @@
                       <div id="datetimepicker12" name="datetimepicker12"></div>
                  </div>
               </div>
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div>
+              <script type="text/javascript">
+                $('#datetimepicker12').datetimepicker(
+                {
+                    inline: true,
+                    format: 'YYYY-MM-DD',
+                    minDate: '01.01.2001',
+                    maxDate: '"<?php print(date('Y-m-d', strtotime("+30 days"))); ?>"',
+                    defaultDate: '"<?php print($positions["cur_date"]); ?>"',
+                    locale: 'ru'
+                }
+/*              $(this).parent('form').submit(); */
+                ).on('dp.change',function(e){
+                    document.getElementById("appointmentdate").value = $('#datetimepicker12').datetimepicker().data('DateTimePicker').date().format('Y-M-D');
+                    document.getElementById("appoint").submit();
+                });
+/*        }); */
+            </script>
+</form>
+    <?php endif; ?>          
+                         	<?php if(isset($datasets["appointments"]) && !empty($datasets["appointments"])): ?>
+                                <div class="panel panel-default" row>
+                                    <div class="panel-heading"><b>Доступные приемы</b></div>
+                                        <div class="panel-body">
+                                            <?php
+                                                foreach ($datasets["appointments"] as $appointment)
+                                                {
+                                                    print("<button type=\"button\" id=\"freeappts\" name=\"".$appointment["id"]."\" data-toggle=\"modal\" data-target=\"#mymodal\"  class=\"btn btn-success btn-lg\" role=\"button\" onclick=\"window.queue_id = this.getAttribute('name');\">".$appointment["name"]."</button>\n");
+                                                }
+                                            ?>
+                                        </div>
+                                  </div>                           
+                             <!-- всплывающее окно с формой заполнения данных для записи на прием -->
+                            <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title">Запись на прием</h4>
+                              <h4 id="modaltitle" class="modal-title">Запись на прием</h4>
                           </div>
                           <div class="modal-body">
-                              <div>
-                                    <form id="booking" action="booking.php">
+                              <div id="modalcontent">
+                                    <form id="booking1">
                                         <fieldset>
                                             <div class="form-group">
                                                 <input autofocus required class="form-control" name="surname" placeholder="Фамилия" type="text"/>
@@ -124,83 +157,63 @@
                                            </div>
                             <!--         <a name=bookingmodal href="#" class="btn btn-primary" role="button">Записаться</a> -->
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#confirm-submit">Записаться</button>
+                                                <button type="submit" class="btn btn-primary">Записаться</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>  
                                             </div>
                                         </fieldset>
                                     </form>
-                                <script type="text/javascript">
-                                $(document).on('click', '[type="submit"]', function() {
-                                    alert('444');
-                                    return false; 
-                                    });
-                                </script>
                                 </div>
-                          </div>
+                            </div>
+ <!--                         </div> -->
                             <!--  <div class="modal-footer">
                                 <button type="button" class="btn btn-primary">Записаться</button>
                                
                               </div> -->
-                      				</div> <!-- /.modal-content -->';
-                 				</div> <!-- /.modal-dialog -->';
-           					</div> <!-- /.modal -->';        
-                        	<?php 
-                            if(isset($datasets["appointments"]) && !empty($datasets["appointments"]))
-                            {
-                                echo '<div class="panel panel-default" row>';
-                                echo '<div class="panel-heading"><b>Доступные приемы</b></div>';
-                                echo '<div class="panel-body">';
-                                foreach ($datasets["appointments"] as $appointment)
-                                    {
-                                print("<button type=\"button\" id=\"freeappts\" name=\"".$appointment["id"]."\" data-toggle=\"modal\" data-target=\"#myModal\"  class=\"btn btn-success btn-lg\" role=\"button\" onclick=\"window.queue_id = this.getAttribute('name');\">".$appointment["name"]."</button>\n");
-                                    }
-                                echo '</div>';
-                                echo '</div>';
-//                                echo '</div>';
-                            }
-                            if (isset($datasets["appointments"]) && empty($datasets["appointments"]))
-                            {
-                                echo '<div id="infoalert" class="alert alert-info">';
-                                echo '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
-                                echo 'Отсутствуют доступные приемы';
-                                echo '</div>';
-                            }
-                        ?>
-<script type="text/javascript">
-       /*        $(function () { */
-            $('#datetimepicker12').datetimepicker(
-                {
-                 inline: true,
-                format: 'YYYY-MM-DD',
-                minDate: '01.01.2001',
-                maxDate: '"<?php print(date('Y-m-d', strtotime("+30 days"))); ?>"',
-                defaultDate: '"<?php print($positions["cur_date"]); ?>"',
-                locale: 'ru'
-                }
-/*              $(this).parent('form').submit(); */
-            ).on('dp.change',function(e){
-            document.getElementById("appointmentdate").value = $('#datetimepicker12').datetimepicker().data('DateTimePicker').date().format('Y-M-D');
-            document.getElementById("appoint").submit();
-            });
-            window.scrollTo(0, document.body.scrollHeight);
-/*        }); */
-    </script>
-        </div>
-        <?php endif; ?>
-                  </form>
+                      				</div> <!-- /.modal-content -->
+                 				</div> <!-- /.modal-dialog -->
+           					</div> <!-- /.modal -->
+                            <script type="text/javascript">
+                                $('#booking1').on('submit', function (e) {
+                                e.preventDefault();
+                                var that = this;
+                                $.ajax({
+                                type: 'GET',
+                                url: 'booking.php',
+                                data: $(that).serialize() + '&id=' + window.queue_id,
+                               success: function(data) {
+                                    $("#modaltitle").html("Прием забронирован");
+                                    $("#modalcontent").html("");
+                                    $("#modalcontent").html(data);    
+                                },
+                                error: function() {
+                                    alert('Error');
+                                }
+                                });
+                                return false;
+                                });
+                            </script>
+                            <?php endif; ?>           
+                            <?php if (isset($datasets["appointments"]) && empty($datasets["appointments"])): ?>
+                                <div id="infoalert" class="alert alert-info">';
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
+                                        Отсутствуют доступные приемы;
+                                </div>;
+                            <?php endif; ?>
+                         </div>
+<!--                   -->
                 </div>
             </div>
-        </div>
         <div class="col-md-6">
             <div class="panel panel-default row">
                 <div class="panel-heading">Информация</div>
                     <div class="panel-body">test</div>
             </div>
         </div>
+      </div>
     </div>
-</div>
 <script>
             $(".alert").delay(4000).slideUp(200, function() {
                 $(this).alert('close');
             });
+            window.scrollTo(0, document.body.scrollHeight);
 </script>
