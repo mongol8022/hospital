@@ -128,11 +128,11 @@
                                         </div>
                                   </div>                           
                              <!-- всплывающее окно с формой заполнения данных для записи на прием -->
-                            <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal" data-keyboard="false" data-backdrop="static" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
                               <h4 id="modaltitle" class="modal-title">Запись на прием</h4>
                           </div>
                           <div class="modal-body">
@@ -181,7 +181,7 @@
                                 url: 'booking.php',
                                 data: $(that).serialize() + '&id=' + window.queue_id,
                                success: function(data) {
-                                    $("#modaltitle").html("Прием забронирован");
+                                    //$("#modaltitle").html("Прием забронирован");
                                     $("#modalcontent").html("");
                                     $("#modalcontent").html(data);    
                                 },
@@ -212,7 +212,10 @@
       </div>
     </div>
 <script>
-            $(".alert").delay(4000).slideUp(200, function() {
+         //   $('#mymodal').on('shown.bs.modal', function () {
+         //       $('#mymodal').modal({ backdrop: 'static', keyboard: false });
+         //   });
+           $(".alert").delay(4000).slideUp(200, function() {
                 $(this).alert('close');
             });
             window.scrollTo(0, document.body.scrollHeight);

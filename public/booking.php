@@ -11,39 +11,28 @@
         }
      else
         {
-            $appointments = CS50::query("UPDATE queues SET ");
+            //$confirmcode =  randomKey(20, 1, 1, 1);
+            //генерация уникального псевдослучайного кода подтверждения бронирования
+            do {
+                    $confirmcode =  randomKey(20, true, true, true);
+                } while (count(CS50::query("SELECT id from queues WHERE confirm_code = ? ", $confirmcode)));
+            $result = CS50::query("UPDATE queues SET person_surname = ?, person_name = ?, person_lastname = ?, date_born = ?, confirm_code = ?, confirm_time = ?  WHERE id = ? ", $_GET["surname"], $_GET["name"], $_GET["lastname"], $_GET["dateborn"], $confirmcode, date("Y-m-d H:i:s"),  $_GET["id"]);
+            //если запись не обновилась, значит е' нет в БД, ошибка
+            if(!$result)
+            {
+                $title = "Ошибка!";
+                $message = "Выбранный прием отсутствует в базе данных.";
+            }
+            //иначе отправка письма со ссілкой для подтверждения записи на прием
+            else
+            {
+                sendmail($_GET["email"], "Завершите запись на прием", "Для завершения процедуры записи на прием к врачу, пожалуйста перейдите по следующей ссылке: ".$_SERVER['SERVER_NAME']."/booking_complete.php?code=".$confirmcode);
+                $title = "Уважаемый клиент!";
+                $message = "По указанному Вами адресу электронной почты <b>".$_GET["email"]."</b> было отправлено письмо с инструкциями по завершению процедуры предварительной записи на прием. В течение следующих 20 минут выбранный прием считается забронированным и не будет доступен другим клиентам, однако если Вы не завершите процедуру записи, по истечении указанного времени бронь будет аннулирована.";
+            }
         }
+    require("../views/booking_form.php");    
         // else render form
 //        render("register_form.php", ["title" => "Register"]);
     }
 ?>
- <div>
-     <h1>Уважаемый клиент!</h1>
-      <p>По указанному Вами адресу электронной почты <b><?php print($_GET["email"]); ?></b> было отправлено письмо с инструкциями по завершению процедуры предварительной записи на прием. В течение следующих 20 минут выбранный прием считается забронированным и не будет доступен другим клиентам, однако если Вы не завершите процедуру записи, по истечении указанного времени бронь будет аннулирована.</p>
-      <h2 id=time></h2>
-  </div>
- <button type="button" class="btn btn-default" data-dismiss="modal" onclick="document.getElementById('appoint').submit();">Ok</button>
-<script>
- function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.text(minutes + ":" + seconds);
-
-        if (--timer < 0) {
-            timer = 0;
-        }
-    }, 1000);
-}
-
-jQuery(function ($) {
-    var fiveMinutes = 60 * 20,
-        display = $('#time');
-    startTimer(fiveMinutes, display);
-});
- </script>

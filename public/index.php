@@ -98,9 +98,10 @@
     . "AND schedule.service_id = services.id "
     . "AND workplaces.id = schedule.worplace_id "
     . "AND workplaces.id = ? "
-    . "AND ( queues.confirm_code IS NULL OR TIMESTAMPDIFF ( MINUTE, queues.confirm_time, ? )  > 20 ) "
+    . "AND queues.cancel_code IS NULL "
+    . "AND ( queues.confirm_time IS NULL OR TIMESTAMPDIFF ( MINUTE, queues.confirm_time, ? )  >= 20 ) "
     . "AND schedule.week_day = WEEKDAY( ? ) "
-    . "AND DATE(queues.time_begin) = DATE ( ? ) "
+    . "AND DATE(queues.time_begin) = ? "
     . "AND queues.time_begin > ? ", $_POST["workplace"], date("Y-m-d H:i:s"),  $cur_date, $cur_date, date("Y-m-d H:i:s"));
             $positions["workplaces"] =  $_POST["workplace"];
             $positions["cur_date"] = $cur_date;

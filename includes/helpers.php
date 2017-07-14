@@ -93,4 +93,57 @@
         }
     }
 
+//send e-mail message
+function sendmail($address, $subject, $body)
+{
+    require("libphp-phpmailer/class.phpmailer.php");
+   
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = "tls";
+    $mail->Host = "smtp.gmail.com"; // change to your email host
+    $mail->Port = 587; // change to your email port
+    $mail->CharSet = 'UTF-8';
+    $mail->Username = "vasyapupkinkram123@gmail.com"; // change to your username
+    $mail->Password = "kf,jhfnjhyfzrhscf"; // change to your email password
+    $mail->setFrom("vasyapupkinkram123@gmail.com", "Онлайн-регистратура"); // change to your email password
+   
+    $mail->AddAddress($address); // change to user's email address
+   
+    $mail->Subject = $subject; // change to email's subject
+    $mail->Body = $body; // change to email's body, add the needed link here
+   
+    if ($mail->Send() == false)
+    {
+        return false;
+        //die($mail->ErrInfo);
+    }
+    else
+    {
+        return true;
+        //echo "It worked!\n";
+    }
+}
+function randomKey($length, $is_digits, $is_lower, $is_upper) {
+    $pool = [];
+    if ($is_digits)
+    {
+        $pool = array_merge($pool, range(0,9));
+    }
+    if ($is_lower)
+    {
+        $pool = array_merge($pool, range('a', 'z'));
+    }
+    if ($is_upper)
+    {
+        $pool = array_merge($pool, range('A', 'Z'));
+    }
+    //$pool = array_merge(range(0,9), range('a', 'z'),range('A', 'Z'));
+    $key = "";
+    for($i=0; $i < $length; $i++) {
+        $key .= $pool[mt_rand(0, count($pool) - 1)];
+    }
+    return $key;
+}
 ?>
