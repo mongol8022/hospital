@@ -2,12 +2,20 @@
 // configuration
     require("../includes/config.php"); 
  // if user reached page via GET (as by clicking a link or via redirect)
-//    if ($_SERVER["REQUEST_METHOD"] == "GET")
-//    {
-//     if 
+    if ($_SERVER["REQUEST_METHOD"] == "GET")
+    {
+     if (!isset($_GET["id"]) or empty($_GET["id"]) or !isset($_GET["surname"]) or empty($_GET["surname"]) or !isset($_GET["name"]) or empty($_GET["name"]) or !isset($_GET["lastname"]) or empty($_GET["lastname"]) or !isset($_GET["dateborn"]) or empty($_GET["dateborn"]) or !isset($_GET["email"]) or empty($_GET["email"]))
+        {
+            $title = "Ошибка!";
+            $message = "Не все необходимые поля заполнены.";
+        }
+     else
+        {
+            $appointments = CS50::query("UPDATE queues SET ");
+        }
         // else render form
 //        render("register_form.php", ["title" => "Register"]);
-//    }
+    }
 ?>
  <div>
      <h1>Уважаемый клиент!</h1>

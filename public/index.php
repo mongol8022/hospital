@@ -1,7 +1,6 @@
 <?php
     // configuration
     require("../includes/config.php"); 
-
  if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
         //если на главную зашли незалогинившись, значит відаем форму заказа талона
@@ -71,7 +70,6 @@
             $departments = CS50::query("SELECT departments.id, departments.name FROM firms, departments where departments.firm_id=firms.id and firms.id = ? order by 2", $_POST["firm"]);
             $datasets["departments"] = $departments;
         }
-
         if (!empty($_POST["department"]) && isset($datasets["departments"]) && $datasets["departments"])
         {
             $workplaces = CS50::query("SELECT workplaces.id, CONCAT(empl_surname, ' ', empl_name, ' ', empl_lastname, '. ', workplaces.name) as name FROM departments,workplaces where workplaces.department_id=departments.id and departments.id = ? order by 2", $_POST["department"]);
@@ -88,7 +86,7 @@
             else
             {
                 $gmtTimezone = new DateTimeZone('EEST');
-                $cur_date = new DateTime(date('Y-m-d'), $gmtTimezone);
+                $cur_date = new DateTime(date('Y-m-d H:i:s'), $gmtTimezone);
                 $cur_date =  date_format($cur_date, 'Y-m-d');
                 //$cur_date = date('Y-m-d');
                 
@@ -102,7 +100,8 @@
     . "AND workplaces.id = ? "
     . "AND ( queues.confirm_code IS NULL OR TIMESTAMPDIFF ( MINUTE, queues.confirm_time, ? )  > 20 ) "
     . "AND schedule.week_day = WEEKDAY( ? ) "
-    . "AND DATE(queues.time_begin) = ? ", $_POST["workplace"], date("Y-m-d H:i:s"),  $cur_date, $cur_date);
+    . "AND DATE(queues.time_begin) = DATE ( ? ) "
+    . "AND queues.time_begin > ? ", $_POST["workplace"], date("Y-m-d H:i:s"),  $cur_date, $cur_date, date("Y-m-d H:i:s"));
             $positions["workplaces"] =  $_POST["workplace"];
             $positions["cur_date"] = $cur_date;
             $datasets["appointments"] = $appointments;
@@ -111,7 +110,4 @@
         render("getticket.php", ["title" => "Запись на приём", "positions" => $positions, "datasets" => $datasets]);
      }
  }
-
-
-
 ?>

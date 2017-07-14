@@ -194,10 +194,10 @@
                             </script>
                             <?php endif; ?>           
                             <?php if (isset($datasets["appointments"]) && empty($datasets["appointments"])): ?>
-                                <div id="infoalert" class="alert alert-info">';
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
-                                        Отсутствуют доступные приемы;
-                                </div>;
+                                <div id="infoalert" class="alert alert-info">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                        Отсутствуют доступные приемы
+                                </div>
                             <?php endif; ?>
                          </div>
 <!--                   -->

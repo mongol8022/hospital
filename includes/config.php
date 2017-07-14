@@ -8,6 +8,8 @@
      *
      * Configures app.
      */
+    // set right timezone
+    date_default_timezone_set("Europe/Kiev");
 
     // display errors, warnings, and notices
     ini_set("display_errors", true);
