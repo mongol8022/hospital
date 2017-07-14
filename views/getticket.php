@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default row">
+            <div class="panel panel-default">
                 <div class="panel-heading">Запись на прием</div>
                 <div class="panel-body">
                     <form id="appoint" action="index.php" method="post">
@@ -116,7 +116,7 @@
 </form>
     <?php endif; ?>          
                          	<?php if(isset($datasets["appointments"]) && !empty($datasets["appointments"])): ?>
-                                <div class="panel panel-default" row>
+                                <div class="panel panel-default">
                                     <div class="panel-heading"><b>Доступные приемы</b></div>
                                         <div class="panel-body">
                                             <?php
@@ -204,7 +204,7 @@
                 </div>
             </div>
         <div class="col-md-6">
-            <div class="panel panel-default row">
+            <div class="panel panel-default">
                 <div class="panel-heading">Информация</div>
                     <div class="panel-body">test</div>
             </div>
