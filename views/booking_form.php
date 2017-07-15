@@ -24,7 +24,7 @@
 }
 
 jQuery(function ($) {
-    var fiveMinutes = 60 * 20,
+    var fiveMinutes = 60 * 20 - 1,
         display = $('#time');
     startTimer(fiveMinutes, display);
 });

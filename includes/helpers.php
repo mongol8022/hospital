@@ -113,7 +113,7 @@ function sendmail($address, $subject, $body)
    
     $mail->Subject = $subject; // change to email's subject
     $mail->Body = $body; // change to email's body, add the needed link here
-   
+    $mail->IsHTML(true);
     if ($mail->Send() == false)
     {
         return false;

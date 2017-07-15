@@ -62,12 +62,12 @@
      {
         $positions=[];
         $datasets=[];
-        $firms = CS50::query("SELECT firms.id, CONCAT (firms.name, ' Адрес: ', CONCAT_WS(', ', firms.postindex, cities.name, firms.street, firms.house)) as name FROM firms, cities where firms.city_id=cities.id order by 2");
+        $firms = CS50::query("SELECT firms.id, firms.info, CONCAT (firms.name, ' Адрес: ', CONCAT_WS(', ', firms.postindex, cities.name, firms.street, firms.house)) as name FROM firms, cities where firms.city_id=cities.id order by 2");
         $datasets["firms"] = $firms;
         $positions["firms"] =  $_POST["firm"];
         if (!empty($_POST["firm"]) && isset($datasets["firms"]) && $datasets["firms"])
         {
-            $departments = CS50::query("SELECT departments.id, departments.name FROM firms, departments where departments.firm_id=firms.id and firms.id = ? order by 2", $_POST["firm"]);
+            $departments = CS50::query("SELECT departments.id, departments.info, departments.name FROM firms, departments where departments.firm_id=firms.id and firms.id = ? order by 2", $_POST["firm"]);
             $datasets["departments"] = $departments;
         }
         if (!empty($_POST["department"]) && isset($datasets["departments"]) && $datasets["departments"])

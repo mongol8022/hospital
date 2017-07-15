@@ -15,8 +15,18 @@
         else
         {
             print("success!");
+            $talondata = CS50::query("SELECT queues.id, firms.name as firm, departments.name as department, " 
+            ."CONCAT (workplaces.name,  ' ', workplaces.empl_surname, ' ', LEFT(workplaces.empl_name , 1), '.', "
+            ."LEFT(workplaces.empl_lastname , 1), '.') as doctor, "
+            ."CONCAT(services.name, ' (', services.duration, ' мин.)') as appointtype, "
+            ."DATE_FORMAT(queues.time_begin, '%d.%m.%Y %H:%i') as date_time, "
+            ."CONCAT(queues.person_surname, ' ', LEFT(queues.person_name, 1), '.', LEFT(queues.person_lastname, 1), '.') as client_fio, "
+            ."queues.cancel_code FROM queues, firms, departments, workplaces, schedule, services "
+            ."WHERE queues.schedule_id=schedule.id and schedule.service_id=services.id and schedule.worplace_id=workplaces.id "
+            ." and workplaces.department_id=departments.id and departments.firm_id=firms.id and queues.id = ? ", $queue_id[0]["id"]);
         }
     }
+    //если не указан код, неверный код или метод пост, то ошибка 404 и завершение
     else 
     {
         http_response_code(404);
