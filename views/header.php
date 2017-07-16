@@ -122,7 +122,7 @@
                             print("<li>");
                         }
                         ?>
-                            <a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+                            <a data-toggle="modal" href="#LoginModal"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
                         </ul>
                         <?php endif ?>
                         </div>

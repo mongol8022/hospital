@@ -1,4 +1,6 @@
 <?php
+require("../views/login_form.php"); 
+global $info;
     function gen_dropdown($name, $label, $values/*и необязательный четвертый параметр позиция*/)
     {
         print("<label for=\"".$name."\">".$label."</label>\n");
@@ -10,12 +12,19 @@
             if (func_num_args() == 4 && !empty(func_get_arg(3)) && $element["id"] == func_get_arg(3)) 
                 { 
                     $selected = "selected ";
+                    if (isset($element["info"]))
+                    {
+                        global $info;
+                        //$info = "test";
+                        $info = htmlspecialchars_decode(stripslashes($element["info"]));
+                    }
                 }
             print("<option ".$selected."value=\"".$element["id"]."\">".$element["name"]."</option>\n");
         }
     print("</select>\n");
     }
 ?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -140,20 +149,20 @@
                                     <form id="booking1">
                                         <fieldset>
                                             <div class="form-group">
-                                                <input autofocus required class="form-control" name="surname" placeholder="Фамилия" type="text"/>
+                                                <input autofocus required class="form-control" name="surname" maxlength="255" style="text-transform: capitalize;" placeholder="Фамилия" type="text"/>
                                             </div>
                                             <div class="form-group">
-                                                <input autofocus required class="form-control" name="name" placeholder="Имя" type="text"/>
+                                                <input required class="form-control" name="name" maxlength="255" style="text-transform: capitalize;" placeholder="Имя" type="text"/>
                                             </div>
                                             <div class="form-group">
-                                                <input autofocus required class="form-control" name="lastname" placeholder="Отчество" type="text"/>
+                                                <input required class="form-control" name="lastname" maxlength="255" style="text-transform: capitalize;" placeholder="Отчество" type="text"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="dateborn">Дата рождения</label>
-                                                <input autofocus required class="form-control" name="dateborn" type="date"/>
+                                                <input required class="form-control" name="dateborn" type="date"/>
                                            </div>
                                            <div class="form-group">
-                                                <input autofocus required class="form-control" name="email" placeholder="Электронная почта" type="email"/>
+                                                <input required class="form-control" name="email" maxlength="255" placeholder="Электронная почта" type="email"/>
                                            </div>
                             <!--         <a name=bookingmodal href="#" class="btn btn-primary" role="button">Записаться</a> -->
                                             <div class="form-group">
@@ -206,7 +215,11 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Информация</div>
-                    <div class="panel-body">test</div>
+                    <div class="panel-body">
+                        <?php 
+                              echo $info;
+                         ?>
+                    </div>
             </div>
         </div>
       </div>

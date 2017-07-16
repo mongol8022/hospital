@@ -1,6 +1,6 @@
 <?php
     // configuration
-    require("../includes/config.php"); 
+    require("../includes/config.php");
  if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
         //если на главную зашли незалогинившись, значит відаем форму заказа талона
@@ -8,7 +8,7 @@
         {
             $positions=[];
             $datasets=[];
-            $firms = CS50::query("SELECT firms.id, CONCAT(firms.name, ' Адрес: ', CONCAT_WS(', ', firms.postindex, cities.name, firms.street, firms.house)) as name FROM firms, cities where firms.city_id=cities.id order by 2");
+            $firms = CS50::query("SELECT firms.id, CONCAT(firms.name, ' Адрес: ', CONCAT_WS(', ', firms.postindex, cities.name, firms.street, firms.house)) as name, firms.info FROM firms, cities where firms.city_id=cities.id order by 2");
             $datasets["firms"] = $firms;
             if (!empty($_GET["firm"]) && isset($datasets["firms"]) && $datasets["firms"])
             {
@@ -62,7 +62,7 @@
      {
         $positions=[];
         $datasets=[];
-        $firms = CS50::query("SELECT firms.id, firms.info, CONCAT (firms.name, ' Адрес: ', CONCAT_WS(', ', firms.postindex, cities.name, firms.street, firms.house)) as name FROM firms, cities where firms.city_id=cities.id order by 2");
+        $firms = CS50::query("SELECT firms.id, CONCAT (firms.name, ' Адрес: ', CONCAT_WS(', ', firms.postindex, cities.name, firms.street, firms.house)) as name, firms.info FROM firms, cities where firms.city_id=cities.id order by 2");
         $datasets["firms"] = $firms;
         $positions["firms"] =  $_POST["firm"];
         if (!empty($_POST["firm"]) && isset($datasets["firms"]) && $datasets["firms"])

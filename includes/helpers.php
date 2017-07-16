@@ -105,9 +105,9 @@ function sendmail($address, $subject, $body)
     $mail->Host = "smtp.gmail.com"; // change to your email host
     $mail->Port = 587; // change to your email port
     $mail->CharSet = 'UTF-8';
-    $mail->Username = "vasyapupkinkram123@gmail.com"; // change to your username
-    $mail->Password = "kf,jhfnjhyfzrhscf"; // change to your email password
-    $mail->setFrom("vasyapupkinkram123@gmail.com", "Онлайн-регистратура"); // change to your email password
+    $mail->Username = "medtalononline@gmail.com"; // change to your username
+    $mail->Password = "talon12345"; // change to your email password
+    $mail->setFrom("medtalononline@gmail.com", "Онлайн-регистратура"); // change to your email password
    
     $mail->AddAddress($address); // change to user's email address
    
