@@ -145,7 +145,7 @@ global $info;
                               <h4 id="modaltitle" class="modal-title">Запись на прием</h4>
                           </div>
                           <div class="modal-body">
-                              <div id="modalcontent">
+                              <div id="bookingmodalcontent">
                                     <form id="booking1">
                                         <fieldset>
                                             <div class="form-group">
@@ -191,8 +191,8 @@ global $info;
                                 data: $(that).serialize() + '&id=' + window.queue_id,
                                success: function(data) {
                                     //$("#modaltitle").html("Прием забронирован");
-                                    $("#modalcontent").html("");
-                                    $("#modalcontent").html(data);    
+                                    $("#bookingmodalcontent").html("");
+                                    $("#bookingmodalcontent").html(data);    
                                 },
                                 error: function() {
                                     alert('Error');
