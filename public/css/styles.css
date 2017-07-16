@@ -125,6 +125,7 @@
 
 .footer-left {
     padding-top: 12px;
+    text-align: left;
 }
 
 .footer-middle-left {
@@ -138,5 +139,8 @@
 
 .footer-right {
     padding-top: 7px;
+}
 
+.text-hosp {
+    text-align: left;
 }

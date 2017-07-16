@@ -46,7 +46,7 @@
                 $positions["workplaces"] =  $_POST["workplace"];
                 $positions["cur_date"] = $cur_date;
                 }
-            render("getticket.php", ["title" => "Получить талон", "datasets" => $datasets, "positions" => $positions]);
+            render("getticket.php", ["title" => "Онлайн-регистратура г. Краматорска", "datasets" => $datasets, "positions" => $positions]);
         }
     }    
  
