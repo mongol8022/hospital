@@ -101,7 +101,7 @@ global $info;
            <div class="panel panel-default">
               <div class="panel-heading"><b>Дата приема</b></div>
                   <div class="panel-body">
-                      <div id="datetimepicker12" name="datetimepicker12"></div>
+                      <div id="datetimepicker12" data-date-min-date="<?php  print(date("Y-m-d"))?>" data-date-locale="ru" data-date-inline="true" data-date-format="YYYY-MM-DD" data-date-default-date="<?php print($positions["cur_date"]); ?>" name="datetimepicker12"></div>
                  </div>
               </div>
         </div>
@@ -109,19 +109,17 @@ global $info;
                 $('#datetimepicker12').datetimepicker(
                 {
                     inline: true,
-                    format: 'YYYY-MM-DD',
-                    minDate: '01.01.2001',
-                    maxDate: '"<?php print(date('Y-m-d', strtotime("+30 days"))); ?>"',
-                    defaultDate: '"<?php print($positions["cur_date"]); ?>"',
-                    locale: 'ru'
+//                    format: 'YYYY-MM-DD',
+//                    minDate: '01.01.2001',
+//                    locale: 'ru'
                 }
-/*              $(this).parent('form').submit(); */
                 ).on('dp.change',function(e){
                     document.getElementById("appointmentdate").value = $('#datetimepicker12').datetimepicker().data('DateTimePicker').date().format('Y-M-D');
                     document.getElementById("appoint").submit();
-                });
-/*        }); */
-            </script>
+//              $(this).parent('form').submit();
+//                });
+        });
+                </script>
 </form>
     <?php endif; ?>          
                          	<?php if(isset($datasets["appointments"]) && !empty($datasets["appointments"])): ?>
