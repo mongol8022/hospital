@@ -1,3 +1,78 @@
+<script>
+var slideNow = 1;
+var slideCount = $('#slidewrapper').children().length;
+var slideInterval = 3000;
+var navBtnId = 0;
+var translateWidth = 0;
+
+$(document).ready(function() {
+    var switchInterval = setInterval(nextSlide, slideInterval);
+
+    $('#viewport').hover(function() {
+        clearInterval(switchInterval);
+    }, function() {
+        switchInterval = setInterval(nextSlide, slideInterval);
+    });
+
+    $('#next-btn').click(function() {
+        nextSlide();
+    });
+
+    $('#prev-btn').click(function() {
+        prevSlide();
+    });
+
+    $('.slide-nav-btn').click(function() {
+        navBtnId = $(this).index();
+
+        if (navBtnId + 1 != slideNow) {
+            translateWidth = -$('#viewport').width() * (navBtnId);
+            $('#slidewrapper').css({
+                'transform': 'translate(' + translateWidth + 'px, 0)',
+                '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+                '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+            });
+            slideNow = navBtnId + 1;
+        }
+    });
+});
+
+function nextSlide() {
+    if (slideNow == slideCount || slideNow <= 0 || slideNow > slideCount) {
+        $('#slidewrapper').css('transform', 'translate(0, 0)');
+        slideNow = 1;
+    } else {
+        translateWidth = -$('#viewport').width() * (slideNow);
+        $('#slidewrapper').css({
+            'transform': 'translate(' + translateWidth + 'px, 0)',
+            '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+            '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+        });
+        slideNow++;
+    }
+}
+
+function prevSlide() {
+    if (slideNow == 1 || slideNow <= 0 || slideNow > slideCount) {
+        translateWidth = -$('#viewport').width() * (slideCount - 1);
+        $('#slidewrapper').css({
+            'transform': 'translate(' + translateWidth + 'px, 0)',
+            '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+            '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+        });
+        slideNow = slideCount;
+    } else {
+        translateWidth = -$('#viewport').width() * (slideNow - 2);
+        $('#slidewrapper').css({
+            'transform': 'translate(' + translateWidth + 'px, 0)',
+            '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+            '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+        });
+        slideNow--;
+    }
+}
+</script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -22,11 +97,22 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Расположение медицинских учреждений на карте г. Краматорска</div>
-                <div class="panel-body">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d21052.15826237009!2d37.58157199991739!3d48.733766966294624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z0LHQvtC70YzQvdC40YbQsCDQutGA0LDQvNCw0YLQvtGA0YHQug!5e0!3m2!1sru!2sua!4v1500232777211" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
+            <div id="block-for-slider">
+        <div id="viewport">
+            <ul id="slidewrapper">
+                <li class="slide"><img src="img/img1.jpg" alt="1" class="slide-img"></li>
+                <li class="slide"><img src="img/img2.jpg" alt="2" class="slide-img"></li>
+                <li class="slide"><img src="img/img3.jpg" alt="3" class="slide-img"></li>
+                <li class="slide"><img src="img/img4.jpg" alt="4" class="slide-img"></li>
+            </ul>
+            <ul id="nav-btns">
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+            </ul>
+        </div>
+    </div>
         </div>
     </div>
 </div>
