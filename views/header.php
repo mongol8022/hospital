@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         <!-- http://getbootstrap.com/ -->
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -37,10 +37,10 @@
         <header class="header-global">
             <div class="row">
                 <div class="col-md-12">
-                    <div class=" wrapper-header nav-container">
+                    <div class="wrapper-header nav-container">
                         <div class="logo">
                             <a href="/index.php">
-                                <img src="img/snake.jpg" alt="#" id="logo">
+                                <img class="img-responsive" src="img/snake.jpg" alt="#" id="logo">
                             </a>
                         </div>
                         <div class="course-header">

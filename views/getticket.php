@@ -210,7 +210,7 @@ global $info;
 <!--                   -->
                 </div>
             </div>
-        <div class="col-md-6">
+        <div class="col-md-6 visible-md visible-lg"> 
             <div class="panel panel-default">
                 <div class="panel-heading">Информация</div>
                     <div class="panel-body">
@@ -219,7 +219,7 @@ global $info;
                          ?>
                     </div>
             </div>
-        </div>
+        </div>  
       </div>
 
 

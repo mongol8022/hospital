@@ -11,7 +11,7 @@
                                         <form id="cancelform1">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <input autofocus required class="form-control" id="cancelcode" name="cancelcode" min="1" max="9999999999" placeholder="Код отмены записи на приём" type="number"/>
+                                                    <input autofocus required class="form-control" id="cancelcode" name="cancelcode" min="1" max="9999999999" placeholder="Введите код отмены записи на приём" type="number"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <center>
