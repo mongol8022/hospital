@@ -1,6 +1,6 @@
-<div class="container">
-	<div class="panel panel-default">
-	      <div class="panel-heading">Отмена зарегистрированного приема</div>
-	      <div class="panel-body">Ваша регистрация успешно отменена.</div>
-	</div>
+<center>
+<div>
+     <p><?php echo $message; ?></p>
 </div>
+ <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+</center>

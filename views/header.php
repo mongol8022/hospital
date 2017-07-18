@@ -4,7 +4,8 @@
 
     <head>
         <meta charset="UTF-8">
-
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- http://getbootstrap.com/ -->
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -107,8 +108,15 @@
                             print("<li>");
                         }
                         ?>
-                        <a href="cancellation.php"><span class="glyphicon glyphicon-remove"></span> Отмена приема</a></li>
-                        <li><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
+                        <a data-toggle="modal" href="#cancelmodal"><span class="glyphicon glyphicon-remove"></span> Отмена приема</a></li>
+                        <li
+                        <?php
+                            if ($view == "medical_page.php")
+                            {
+                                print(" class=\"active\"");
+                            }
+                        ?>    
+                        ><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
                         
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -130,4 +138,11 @@
                 </div>
             </nav>
         </div>
+    <?php
+    if (empty($_SESSION["user_id"]))
+        {
+            require("../views/login_form.php");
+            require("../views/cancel_modal.php");
+        }
+        ?>
         <!--            <div id="middle"> -->

@@ -1,5 +1,4 @@
 <?php
-require("../views/login_form.php"); 
 global $info;
     function gen_dropdown($name, $label, $values/*и необязательный четвертый параметр позиция*/)
     {
@@ -120,8 +119,9 @@ global $info;
 //                });
         });
                 </script>
-</form>
+
     <?php endif; ?>          
+</form>
                          	<?php if(isset($datasets["appointments"]) && !empty($datasets["appointments"])): ?>
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><b>Доступные приемы</b></div>
@@ -134,7 +134,7 @@ global $info;
                                             ?>
                                         </div>
                                   </div>                           
-                             <!-- всплывающее окно с формой заполнения данных для записи на прием -->
+                                 <!-- всплывающее окно с формой заполнения данных для записи на прием -->
                             <div class="modal fade" data-keyboard="false" data-backdrop="static" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
@@ -221,8 +221,13 @@ global $info;
             </div>
         </div>
       </div>
+
+
     </div>
+
+
 <script>
+          
          //   $('#mymodal').on('shown.bs.modal', function () {
          //       $('#mymodal').modal({ backdrop: 'static', keyboard: false });
          //   });
