@@ -46,41 +46,22 @@
     margin: 20px;
 }
 
-.header-global {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    height: auto;
+.head-wrap {
+    border-bottom: 1px solid red;
+    margin: 10px 0px 5px 0px;
     padding: 5px 0px 5px 0px;
-    border-bottom: 1px solid #e62246;
-    background: #fff;
-    line-height: 1.4;
-}
-
-.wrapper-header {
-    margin: 0 auto;
-    display: block;
-    height: 60px;
-    width: 1140px;
 }
 
 .logo {
-    float: left;
-    position: relative;
-}
-
-#logo {
     width: 50px;
+    float: left;
+    position: fixed;
 }
 
-.logo-header {
-    
-    display: inline;
-}
-
-.course-header {
-    margin: 0px 10px 0px 10px;
-    display: inline-block;
-    width: 65%;
-    font-weight: 400;
+.head-text {
+    padding-left: 60px;
+    float: left;
+    /*position: relative;*/
 }
 
 .start {
