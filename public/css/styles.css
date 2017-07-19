@@ -52,16 +52,21 @@
     padding: 5px 0px 5px 0px;
 }
 
-.logo {
+/*.logo {*/
+/*    position: relative;*/
+/*}*/
+
+#logo {
     width: 50px;
     float: left;
-    position: fixed;
+    position: absolute;
+    display: block;
 }
 
 .head-text {
     padding-left: 60px;
     float: left;
-    /*position: relative;*/
+    position: relative;
 }
 
 .start {
