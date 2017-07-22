@@ -34,23 +34,23 @@
 
     <body>
 
-        <header class="header-global">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="wrapper-header nav-container">
-                        <div class="logo">
-                            <a href="/index.php">
-                                <img class="img-responsive" src="img/snake.jpg" alt="#" id="logo">
-                            </a>
-                        </div>
-                        <div class="course-header">
-                            <h3>Онлайн-регистратура г. Краматорска</h3>
+        <header class="head-wrap">
+            <div class="container">
+                <div class="head-cont">
+                    <div class="logo">
+                        <a href="/index.php">
+                            <img class="img-responsive" src="img/snake.jpg" alt="#" id="logo">
+                        </a>
+                    </div>
+                    <div>
+                        <div class="head-text">
+                                <h3>Онлайн-регистратура г.&nbspКраматорска</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        
+
         <div class="container">            
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
