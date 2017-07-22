@@ -61,15 +61,24 @@
                 </button>
                     <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] = 'employ'): ?>
-                        <li><a href="schedule.php">Моё расписание</a></li>
-                        <li><a href="livequeue.php">График в реальном времени</a></li>
+                        <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] == 'employ'): ?>
+                        <?php if ($view == "doc_graphic.php")
+                        {
+                            print("<li class=\"active\">");
+                        }
+                        else
+                        {
+                            print("<li>");
+                        }
+                        ?>
+                        <a href="doc_graphic.php">Моё расписание</a></li>
+                        <li><a href="doc_queue.php">Мой График приёма</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
                     </ul>
                     <?php endif ?>
-                    <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] = 'admin'): ?>
+                    <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] == 'admin'): ?>
                         <li><a href="schedule.php">Расписания</a></li>
                         <li><a href="livequeue.php">Графики в реальном времени</a></li>
                         <li class="dropdown">
@@ -81,7 +90,6 @@
                                     <li><a href="workplaces.php">Рабочие места</a></li>
                                 </ul>
                         </li>
-                        <li><a href="logout.php"><strong>Выйти</strong></a></li>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
                         </ul>

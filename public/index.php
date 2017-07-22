@@ -48,6 +48,13 @@
                 }
             render("getticket.php", ["title" => "Онлайн-регистратура г. Краматорска", "datasets" => $datasets, "positions" => $positions]);
         }
+         if (!empty($_SESSION["user_id"]) and $_SESSION["usertype"] == 'employ')
+        {
+            //print $_SESSION["user_id"];
+            //print $_SESSION["usertype"];
+            render("doc_graphic.php", ["title" => "Кабинет врача. Графики приема."]);
+        }
+        
     }    
  
  

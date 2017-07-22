@@ -34,6 +34,7 @@ $('#cancelmodal').on('shown.bs.modal', function() {
              $("#cancelmsg").hide();
              $("#cancelcode").val("");
              $("#cancelformdiv").show();
+             $('#cancelcode').focus();
           });
           $('#cancelform1').on('submit', function (e) {
                                 e.preventDefault();

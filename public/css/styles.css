@@ -269,3 +269,20 @@
     border-top-right-radius: 6px;
 	border-top-left-radius: 6px; 
 }
+
+.ui-jqgrid tr.jqgrow td {
+    font-size:1.3em;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    font-size:1.3em;
+}
+
+.ui-jqgrid .ui-jqgrid-title {
+     font-size:1.3em;
+}
+
+
+.ui-jqgrid .ui-pg-table td {
+    font-size:1.3em;
+}

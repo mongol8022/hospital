@@ -27,7 +27,7 @@ global $info;
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-default z-depth-2">
                 <div class="panel-heading">Запись на прием</div>
                 <div class="panel-body">
                     <form id="appoint" action="index.php" method="post">
@@ -70,10 +70,7 @@ global $info;
                        </div>
                         <?php endif; ?>
     <?php if(isset($datasets["departments"]) && empty($datasets["departments"])): ?>
-        <div id="infoalert" class="alert alert-info">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              К сожалению для выбранного учреждения отсутствуют подразделения.
-        </div>
+        <div id="infoalert" class="alert alert-info"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> К сожалению для выбранного учреждения отсутствуют подразделения</div>
     <?php endif; ?>
 
     <?php if(isset($datasets["workplaces"]) && !empty($datasets["workplaces"])): ?>
@@ -91,9 +88,7 @@ global $info;
             </div>
     <?php endif; ?>
     <?php if(isset($datasets["workplaces"]) && empty($datasets["workplaces"])): ?>
-        <div class="alert alert-info" id="infoalert">
-            К сожалению для выбранного подразделения отсутствуют врачи
-        </div>
+        <div class="alert alert-info" id="infoalert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> К сожалению для выбранного подразделения отсутствуют врачи</div>
     <?php endif; ?>
     <?php if(isset($positions["cur_date"])): ?> 
         <div class="form-group">
@@ -201,10 +196,7 @@ global $info;
                             </script>
                             <?php endif; ?>           
                             <?php if (isset($datasets["appointments"]) && empty($datasets["appointments"])): ?>
-                                <div id="infoalert" class="alert alert-info">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Отсутствуют доступные приемы
-                                </div>
+                                <div id="infoalert" class="alert alert-info"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Отсутствуют доступные приемы</div>
                             <?php endif; ?>
                          </div>
 <!--                   -->

@@ -1,10 +1,9 @@
  <div>
      <h1><?php echo $title; ?></h1>
       <p><?php echo $message; ?></p>
+<?php  if (!$iserror): ?>
       <h2 id=time></h2>
-  </div>
- <button type="button" class="btn btn-default" data-dismiss="modal" onclick="document.getElementById('appoint').submit();">Ok</button>
-<script>
+      <script>
  function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -29,3 +28,6 @@ jQuery(function ($) {
     startTimer(fiveMinutes, display);
 });
  </script>
+<?php endif; ?>   
+  </div>
+ <button type="button" class="btn btn-default" data-dismiss="modal" onclick="document.getElementById('appoint').submit();">Ok</button>
