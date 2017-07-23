@@ -1,29 +1,67 @@
-;(function($){
 /**
  * jqGrid Spanish Translation
  * Traduccion jqGrid en Español por Yamil Bracho
  * Traduccion corregida y ampliada por Faserline, S.L. 
  * http://www.faserline.com
+ * Traduccion corregida y ampliada por Fernán Castro Asensio
+ * Traducción corregida y ampliada por Luis Sánchez
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
 **/
+/*global jQuery, define */
+(function( factory ) {
+	"use strict";
+	if ( typeof define === "function" && define.amd ) {
+		// AMD. Register as an anonymous module.
+		define([
+			"jquery",
+			"../grid.base"
+		], factory );
+	} else {
+		// Browser globals
+		factory( jQuery );
+	}
+}(function( $ ) {
+
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+if(!$.jgrid.hasOwnProperty("regional")) {
+	$.jgrid.regional = [];
+}
+$.jgrid.regional["es"] = {
 	defaults : {
 		recordtext: "Mostrando {0} - {1} de {2}",
 	    emptyrecords: "Sin registros que mostrar",
 		loadtext: "Cargando...",
-		pgtext : "Página {0} de {1}"
+		savetext: "Guardando...",
+		pgtext : "Página {0} de {1}",
+		pgfirst : "Primera página",
+		pglast : "Última página",
+		pgnext : "Siguiente página",
+		pgprev : "Anterior página",
+		pgrecs : "Registros por página",
+		showhide: "Alternar Contraer Expandir Grid",
+		// mobile
+		pagerCaption : "Grid::Configurar página",
+		pageText : "Página:",
+		recordPage : "Registros por página",
+		nomorerecs : "No más registros...",
+		scrollPullup: "Arrastrar arriba para cargar más...",
+		scrollPulldown : "Arrastrar arriba para refrescar...",
+		scrollRefresh : "Soltar para refrescar..."		
 	},
 	search : {
 	    caption: "Búsqueda...",
 	    Find: "Buscar",
 	    Reset: "Limpiar",
-	    odata : ['igual ', 'no igual a', 'menor que', 'menor o igual que','mayor que','mayor o igual a', 'empiece por','no empiece por','está en','no está en','termina por','no termina por','contiene','no contiene'],
+	    odata: [{ oper:'eq', text:"igual "},{ oper:'ne', text:"no igual a"},{ oper:'lt', text:"menor que"},{ oper:'le', text:"menor o igual que"},{ oper:'gt', text:"mayor que"},{ oper:'ge', text:"mayor o igual a"},{ oper:'bw', text:"empiece por"},{ oper:'bn', text:"no empiece por"},{ oper:'in', text:"está en"},{ oper:'ni', text:"no está en"},{ oper:'ew', text:"termina por"},{ oper:'en', text:"no termina por"},{ oper:'cn', text:"contiene"},{ oper:'nc', text:"no contiene"},{ oper:'nu', text:'es nulo'},{ oper:'nn', text:'no es nulo'}, {oper:'bt', text:'entre'}],
 	    groupOps: [	{ op: "AND", text: "todo" },	{ op: "OR",  text: "cualquier" }	],
-		matchText: " match",
-		rulesText: " reglas"
+		operandTitle : "Clic para seleccionar la operación de búsqueda.",
+		resetTitle : "Reiniciar valores de búsqueda",
+		addsubgrup : "Agregar subgrupo",
+		addrule : "Agregar regla",
+		delgroup : "Borrar grupo",
+		delrule : "Borrar regla"
 	},
 	edit : {
 	    addCaption: "Agregar registro",
@@ -42,12 +80,12 @@ $.extend($.jgrid,{
 	        maxValue:"El valor debe ser menor o igual a ",
 	        email: "no es una dirección de correo válida",
 	        integer: "Introduzca un valor entero",
-			date: "Introduza una fecha correcta ",
-			url: "no es una URL válida. Prefijo requerido ('http://' or 'https://')",
-			nodefined : " no está definido.",
-			novalue : " valor de retorno es requerido.",
-			customarray : "La función personalizada debe devolver un array.",
-			customfcheck : "La función personalizada debe estar presente en el caso de validación personalizada."
+		date: "Introduzca una fecha correcta ",
+		url: "no es una URL válida. Prefijo requerido ('http://' or 'https://')",
+		nodefined : " no está definido.",
+		novalue : " valor de retorno es requerido.",
+		customarray : "La función personalizada debe devolver un array.",
+		customfcheck : "La función personalizada debe estar presente en el caso de validación personalizada."
 		}
 	},
 	view : {
@@ -61,9 +99,9 @@ $.extend($.jgrid,{
 	    bCancel: "Cancelar"
 	},
 	nav : {
-		edittext: " ",
+	    edittext: " ",
 	    edittitle: "Modificar fila seleccionada",
-		addtext:" ",
+	    addtext:" ",
 	    addtitle: "Agregar nueva fila",
 	    deltext: " ",
 	    deltitle: "Eliminar fila seleccionada",
@@ -74,7 +112,12 @@ $.extend($.jgrid,{
 	    alertcap: "Aviso",
 	    alerttext: "Seleccione una fila",
 		viewtext: "",
-		viewtitle: "Ver fila seleccionada"
+		viewtitle: "Ver fila seleccionada",
+		savetext: "",
+		savetitle: "Guardar fila",
+		canceltext: "",
+		canceltitle : "Cancelar edición de fila",
+		selectcaption : "Acciones..."
 	},
 	col : {
 	    caption: "Mostrar/ocultar columnas",
@@ -85,7 +128,7 @@ $.extend($.jgrid,{
 		errcap : "Error",
 		nourl : "No se ha especificado una URL",
 		norecords: "No hay datos para procesar",
-	    model : "Las columnas de nombres son diferentes de las columnas de modelo"
+	    model : "Las columnas de nombres son diferentes de las columnas del modelo"
 	},
 	formatter : {
 		integer : {thousandsSeparator: ".", defaultValue: '0'},
@@ -94,7 +137,7 @@ $.extend($.jgrid,{
 		date : {
 			dayNames:   [
 				"Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa",
-				"Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"
+				"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
 			],
 			monthNames: [
 				"Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
@@ -104,6 +147,7 @@ $.extend($.jgrid,{
 			S: function (j) {return j < 11 || j > 13 ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th'},
 			srcformat: 'Y-m-d',
 			newformat: 'd-m-Y',
+			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
 	            ISO8601Long:"Y-m-d H:i:s",
 	            ISO8601Short:"Y-m-d",
@@ -117,13 +161,26 @@ $.extend($.jgrid,{
 	            UniversalSortableDateTime: "Y-m-d H:i:sO",
 	            YearMonth: "F, Y"
 	        },
-	        reformatAfterEdit : false
+	        reformatAfterEdit : false,
+			userLocalTime : false
 		},
 		baseLinkUrl: '',
 		showAction: '',
 	    target: '',
 	    checkbox : {disabled:true},
 		idName : 'id'
+	},
+	colmenu : {
+		sortasc : "Ordenar ascendentemente",
+		sortdesc : "Ordenar descendientemente",
+		columns : "Columnas",
+		filter : "Filtrar",
+		grouping : "Agrupar por",
+		ungrouping : "Desagrupar",
+		searchTitle : "Obtener elementos con un valor que:",
+		freeze : "Congelar",
+		unfreeze : "Descongelar",
+		reorder : "Mover para reordenar"
 	}
-});
-})(jQuery);
+};
+}));

@@ -96,7 +96,7 @@
 //send e-mail message
 function sendmail($address, $subject, $body)
 {
-    require("libphp-phpmailer/class.phpmailer.php");
+    require("../PHPMailer/class.phpmailer.php");
    
     $mail = new PHPMailer();
     $mail->IsSMTP();

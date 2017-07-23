@@ -1,4 +1,3 @@
-;(function($){
 /**
  * jqGrid Greek (el) Translation
  * Alex Cicovic
@@ -7,22 +6,59 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
 **/
+/*global jQuery, define */
+(function( factory ) {
+	"use strict";
+	if ( typeof define === "function" && define.amd ) {
+		// AMD. Register as an anonymous module.
+		define([
+			"jquery",
+			"../grid.base"
+		], factory );
+	} else {
+		// Browser globals
+		factory( jQuery );
+	}
+}(function( $ ) {
+
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+if(!$.jgrid.hasOwnProperty("regional")) {
+	$.jgrid.regional = [];
+}
+$.jgrid.regional["el"] = {
 	defaults : {
 		recordtext: "View {0} - {1} of {2}",
 	    emptyrecords: "No records to view",
 		loadtext: "Φόρτωση...",
-		pgtext : "Page {0} of {1}"
+		savetext: "Saving...",
+		pgtext : "Page {0} of {1}",
+		pgfirst : "First Page",
+		pglast : "Last Page",
+		pgnext : "Next Page",
+		pgprev : "Previous Page",
+		pgrecs : "Records per Page",
+		showhide: "Toggle Expand Collapse Grid",
+		// mobile
+		pagerCaption : "Grid::Page Settings",
+		pageText : "Page:",
+		recordPage : "Records per Page",
+		nomorerecs : "No more records...",
+		scrollPullup: "Pull up to load more...",
+		scrollPulldown : "Pull down to refresh...",
+		scrollRefresh : "Release to refresh..."		
 	},
 	search : {
 	    caption: "Αναζήτηση...",
 	    Find: "Εύρεση",
 	    Reset: "Επαναφορά",
-	    odata : ['equal', 'not equal', 'less', 'less or equal','greater','greater or equal', 'begins with','does not begin with','is in','is not in','ends with','does not end with','contains','does not contain'],
+	    odata: [{ oper:'eq', text:'equal'},{ oper:'ne', text:'not equal'},{ oper:'lt', text:'less'},{ oper:'le', text:'less or equal'},{ oper:'gt', text:'greater'},{ oper:'ge', text:'greater or equal'},{ oper:'bw', text:'begins with'},{ oper:'bn', text:'does not begin with'},{ oper:'in', text:'is in'},{ oper:'ni', text:'is not in'},{ oper:'ew', text:'ends with'},{ oper:'en', text:'does not end with'},{ oper:'cn', text:'contains'},{ oper:'nc', text:'does not contain'},{ oper:'nu', text:'is null'},{ oper:'nn', text:'is not null'}, {oper:'bt', text:'between'}],
 	    groupOps: [	{ op: "AND", text: "all" },	{ op: "OR",  text: "any" }	],
-		matchText: " match",
-		rulesText: " rules"
+		operandTitle : "Click to select search operation.",
+		resetTitle : "Reset Search Value",
+		addsubgrup : "Add subgroup",
+		addrule : "Add rule",
+		delgroup : "Delete group",
+		delrule : "Delete rule"
 	},
 	edit : {
 	    addCaption: "Εισαγωγή Εγγραφής",
@@ -72,7 +108,12 @@ $.extend($.jgrid,{
 	    alertcap: "Προσοχή",
 	    alerttext: "Δεν έχετε επιλέξει εγγραφή",
 		viewtext: "",
-		viewtitle: "View selected row"
+		viewtitle: "View selected row",
+		savetext: "",
+		savetitle: "Save row",
+		canceltext: "",
+		canceltitle : "Cancel row editing",
+		selectcaption : "Actions..."
 	},
 	col : {
 	    caption: "Εμφάνιση / Απόκρυψη Στηλών",
@@ -102,6 +143,7 @@ $.extend($.jgrid,{
 			S: function (j) {return j == 1 || j > 1 ? ['η'][Math.min((j - 1) % 10, 3)] : ''},
 			srcformat: 'Y-m-d',
 			newformat: 'd/m/Y',
+			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
 	            ISO8601Long:"Y-m-d H:i:s",
 	            ISO8601Short:"Y-m-d",
@@ -115,13 +157,26 @@ $.extend($.jgrid,{
 	            UniversalSortableDateTime: "Y-m-d H:i:sO",
 	            YearMonth: "F, Y"
 	        },
-	        reformatAfterEdit : false
+	        reformatAfterEdit : false,
+			userLocalTime : false
 		},
 		baseLinkUrl: '',
 		showAction: '',
 	    target: '',
 	    checkbox : {disabled:true},
 		idName : 'id'
+	},
+	colmenu : {
+		sortasc : "Sort Ascending",
+		sortdesc : "Sort Descending",
+		columns : "Columns",
+		filter : "Filter",
+		grouping : "Group By",
+		ungrouping : "Ungroup",
+		searchTitle : "Get items with value that:",
+		freeze : "Freeze",
+		unfreeze : "Unfreeze",
+		reorder : "Move to reorder"
 	}
-});
-})(jQuery);
+};
+}));

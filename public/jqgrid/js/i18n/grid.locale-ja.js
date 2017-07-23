@@ -1,4 +1,3 @@
-;(function($){
 /**
  * jqGrid Japanese Translation
  * OKADA Yoshitada okada.dev@sth.jp
@@ -7,25 +6,59 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
 **/
+/*global jQuery, define */
+(function( factory ) {
+	"use strict";
+	if ( typeof define === "function" && define.amd ) {
+		// AMD. Register as an anonymous module.
+		define([
+			"jquery",
+			"../grid.base"
+		], factory );
+	} else {
+		// Browser globals
+		factory( jQuery );
+	}
+}(function( $ ) {
+
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+if(!$.jgrid.hasOwnProperty("regional")) {
+	$.jgrid.regional = [];
+}
+$.jgrid.regional["ja"] = {
 	defaults : {
 		recordtext: "{2} \u4EF6\u4E2D {0} - {1} \u3092\u8868\u793A ",
 	    emptyrecords: "\u8868\u793A\u3059\u308B\u30EC\u30B3\u30FC\u30C9\u304C\u3042\u308A\u307E\u305B\u3093",
 		loadtext: "\u8aad\u307f\u8fbc\u307f\u4e2d...",
-		pgtext : "{1} \u30DA\u30FC\u30B8\u4E2D {0} \u30DA\u30FC\u30B8\u76EE "
+		pgtext : "{1} \u30DA\u30FC\u30B8\u4E2D {0} \u30DA\u30FC\u30B8\u76EE ",
+		savetext: "\u4fdd\u5b58\u4e2d...",
+		pgfirst : "\u6700\u521d\u306e\u30da\u30fc\u30b8\u3078",
+		pglast : "\u6700\u5f8c\u306e\u30da\u30fc\u30b8\u3078",
+		pgnext : "\u6b21\u306e\u30da\u30fc\u30b8",
+		pgprev : "\u524d\u306e\u30da\u30fc\u30b8",
+		pgrecs : "\u30da\u30fc\u30b8\u5358\u4f4d\u306e\u30ec\u30b3\u30fc\u30c9\u6570",
+		showhide: "\u30b0\u30ea\u30c3\u30c9\u306e\u5c55\u958b/\u9589\u3058\u8fbc\u307f",
+		// mobile
+		pagerCaption : "\u30b0\u30ea\u30c3\u30c9::\u30da\u30fc\u30b8\u8a2d\u5b9a",
+		pageText : "\u30da\u30fc\u30b8:",
+		recordPage : "\u30da\u30fc\u30b8\u5358\u4f4d\u306e\u30ec\u30b3\u30fc\u30c9\u6570",
+		nomorerecs : "\u30ec\u30b3\u30fc\u30c9\u304c\u3042\u308a\u307e\u305b\u3093...",
+		scrollPullup: "\u4e0a\u306b\u30b9\u30af\u30ed\u30fc\u30eb\u3057\u3066\u8aad\u307f\u8fbc\u307f...",
+		scrollPulldown : "\u4e0b\u306b\u30b9\u30af\u30ed\u30fc\u30eb\u3057\u3066\u66f4\u65b0...",
+		scrollRefresh : "\u653e\u3057\u3066\u66f4\u65b0..."
 	},
 	search : {
 	    caption: "\u691c\u7d22...",
 	    Find: "\u691c\u7d22",
 	    Reset: "\u30ea\u30bb\u30c3\u30c8",
-	    odata: ["\u6B21\u306B\u7B49\u3057\u3044", "\u6B21\u306B\u7B49\u3057\u304F\u306A\u3044",
-            "\u6B21\u3088\u308A\u5C0F\u3055\u3044", "\u6B21\u306B\u7B49\u3057\u3044\u304B\u5C0F\u3055\u3044",
-            "\u6B21\u3088\u308A\u5927\u304D\u3044", "\u6B21\u306B\u7B49\u3057\u3044\u304B\u5927\u304D\u3044",
-            "\u6B21\u3067\u59CB\u307E\u308B", "\u6B21\u3067\u59CB\u307E\u3089\u306A\u3044",
-            "\u6B21\u306B\u542B\u307E\u308C\u308B", "\u6B21\u306B\u542B\u307E\u308C\u306A\u3044",
-            "\u6B21\u3067\u7D42\u308F\u308B", "\u6B21\u3067\u7D42\u308F\u3089\u306A\u3044",
-            "\u6B21\u3092\u542B\u3080", "\u6B21\u3092\u542B\u307E\u306A\u3044"],
+	    odata: [{ oper:'eq', text:"\u6B21\u306B\u7B49\u3057\u3044"}, { oper:'ne', text:"\u6B21\u306B\u7B49\u3057\u304F\u306A\u3044"},
+            { oper:'lt', text:"\u6B21\u3088\u308A\u5C0F\u3055\u3044"}, { oper:'le', text:"\u6B21\u306B\u7B49\u3057\u3044\u304B\u5C0F\u3055\u3044"},
+            { oper:'gt', text:"\u6B21\u3088\u308A\u5927\u304D\u3044"}, { oper:'ge', text:"\u6B21\u306B\u7B49\u3057\u3044\u304B\u5927\u304D\u3044"},
+            { oper:'bw', text:"\u6B21\u3067\u59CB\u307E\u308B"}, { oper:'bn', text:"\u6B21\u3067\u59CB\u307E\u3089\u306A\u3044"},
+            { oper:'in', text:"\u6B21\u306B\u542B\u307E\u308C\u308B"}, { oper:'ni', text:"\u6B21\u306B\u542B\u307E\u308C\u306A\u3044"},
+            { oper:'ew', text:"\u6B21\u3067\u7D42\u308F\u308B"}, { oper:'en', text:"\u6B21\u3067\u7D42\u308F\u3089\u306A\u3044"},
+            { oper:'cn', text:"\u6B21\u3092\u542B\u3080"}, { oper:'nc', text:"\u6B21\u3092\u542B\u307E\u306A\u3044"},
+			{ oper:'nu', text:'is null'},{ oper:'nn', text:'is not null'}, {oper:'bt', text:'between'}],
 	    groupOps: [{
                 op: "AND",
                 text: "\u3059\u3079\u3066\u306E"
@@ -34,8 +67,12 @@ $.extend($.jgrid,{
                 op: "OR",
                 text: "\u3044\u305A\u308C\u304B\u306E"
             }],
-      matchText: " \u6B21\u306E",
-      rulesText: " \u6761\u4EF6\u3092\u6E80\u305F\u3059"
+		operandTitle : "\u30af\u30ea\u30c3\u30af\u3057\u3066\u691c\u7d22\u64cd\u4f5c\u3092\u9078\u629e",
+		resetTitle : "\u691c\u7d22\u5024\u3092\u30ea\u30bb\u30c3\u30c8",
+		addsubgrup : "Add subgroup",
+		addrule : "Add rule",
+		delgroup : "Delete group",
+		delrule : "Delete rule"		
 	},
 	edit : {
 	    addCaption: "\u30ec\u30b3\u30fc\u30c9\u8ffd\u52a0",
@@ -86,7 +123,12 @@ $.extend($.jgrid,{
 	    alertcap: "\u8b66\u544a",
 	    alerttext: "\u884c\u3092\u9078\u629e\u3057\u3066\u4e0b\u3055\u3044\u3002",
       viewtext: "",
-      viewtitle: "\u9078\u629E\u3057\u305F\u884C\u3092\u8868\u793A"
+      viewtitle: "\u9078\u629E\u3057\u305F\u884C\u3092\u8868\u793A",
+		savetext: "",
+		savetitle: "\u5217\u3092\u4fdd\u5b58",
+		canceltext: "",
+		canceltitle : "\u5217\u306e\u7de8\u96c6\u3092\u30ad\u30e3\u30f3\u30bb\u30eb",
+		selectcaption : "\u30a2\u30af\u30b7\u30e7\u30f3..."
 	},
 	col : {
 	    caption: "\u5217\u3092\u8868\u793a\uff0f\u96a0\u3059",
@@ -131,6 +173,7 @@ $.extend($.jgrid,{
 			S: function (j) { return "\u756a\u76ee"; },
 			srcformat: 'Y-m-d',
 			newformat: 'd/m/Y',
+			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
 	            ISO8601Long:"Y-m-d H:i:s",
 	            ISO8601Short:"Y-m-d",
@@ -144,13 +187,26 @@ $.extend($.jgrid,{
 	            UniversalSortableDateTime: "Y-m-d H:i:sO",
 	            YearMonth: "F, Y"
 	        },
-	        reformatAfterEdit : false
+	        reformatAfterEdit : false,
+			userLocalTime : false
 		},
 		baseLinkUrl: '',
 		showAction: '',
 	    target: '',
 	    checkbox : {disabled:true},
 		idName : 'id'
+	},
+	colmenu : {
+		sortasc : "Sort Ascending",
+		sortdesc : "Sort Descending",
+		columns : "Columns",
+		filter : "Filter",
+		grouping : "Group By",
+		ungrouping : "Ungroup",
+		searchTitle : "Get items with value that:",
+		freeze : "Freeze",
+		unfreeze : "Unfreeze",
+		reorder : "Move to reorder"
 	}
-});
-})(jQuery);
+};
+}));

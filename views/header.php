@@ -71,11 +71,11 @@
                             print("<li>");
                         }
                         ?>
-                        <a href="doc_graphic.php">Моё расписание</a></li>
+                        <a href="index.php">Моё расписание</a></li>
                         <li><a href="doc_queue.php">Мой График приёма</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
+                         <li><a data-toggle="modal" href="#logoutmodal"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
                     </ul>
                     <?php endif ?>
                     <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] == 'admin'): ?>
@@ -91,7 +91,7 @@
                                 </ul>
                         </li>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
+                            <li><a data-toggle="modal" href="#logoutmodal"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
                         </ul>
                         <?php endif ?>
                         <?php if (empty($_SESSION["user_id"])): ?>
@@ -151,6 +151,10 @@
         {
             require("../views/login_form.php");
             require("../views/cancel_modal.php");
+        }
+    else 
+        {
+            require("../views/logout_form.php");
         }
         ?>
         <!--            <div id="middle"> -->
