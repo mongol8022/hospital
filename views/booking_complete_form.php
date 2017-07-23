@@ -1,4 +1,8 @@
 <!--Форма с талоном-->
+<!DOCTYPE html>
+<html>
+<head>
+	
 	<script src="js/jspdf.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
@@ -7,37 +11,43 @@
         $(window).on('load',function(){
             $('#talonmodal').modal('show');
         });
-    	//<!--Функция сохранения талона на комп. с костылями по очиске талона от кнопок-->
+        
+    	//<!--Функция сохранения талона на диск(изодражение видимой части узла 1:1)-->
 		function savepdf() {
-	    	//костыль убирает надпись и кнопки
-			//document.getElementById("titler").style.display="none";
-			//document.getElementById("talon-butt").style.display="none";
-			var i=0;
-			var getTags=document.getElementsByTagName("div");
-			for(i=0; i < getTags.length; i++){
-				if (getTags[i].id === "talon"){getTags[i].style.visibility="visible";}
-					else {getTags[i].style.visibility="hidden";}
-			}
-			document.getElementById("talon").style.display="block";
-			var namepdf="talon.pdf";
-			var value=document.getElementById("talon").TextContent;
-			var pdf = new jsPDF("p","pt","a4");
-				pdf.addHTML(value, function() {
-					pdf.save(namepdf);
-					alert("Талон сохраняется на диск");
+			html2canvas(document.getElementById("talon"), {
+				onrendered:function(canvas) {
+					var img=canvas.toDataURL("image/png");
+						var doc = new jsPDF();
+						doc.addImage(img,'JPEG',20,10);
+						doc.save('talon.pdf');
+					}
 				});
-			//костыль возвращает надпись и кнопки
-			//document.getElementById("titler").style.display="block";
-			//document.getElementById("talon-butt").style.display="block";
-			//document.body.style.display="block";
-			for(i=0; i < getTags.length; i++){
-				getTags[i].style.visibility="visible";}
-			
-			
-		}
+		} 
 	</script>
+
+<style type="text/css">
+
+	table {
+		border: 2px solid black;
+		width: 40%;
+		max-width: 400px;
+		min-width: 300px;
+	}
 	
-	
+	td, tn {
+		padding: 3px; 
+		border: 0; 
+	}
+  </style>
+</head>
+
+
+
+<body>	
+
+
+    <!--script src="js/main.js"></script-->
+
 <div class="modal fade" data-keyboard="false" data-backdrop="static" id="talonmodal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -47,65 +57,56 @@
 					<center><h4 id="modaltitle" class="modal-title">Запись на прием успешно завершена</h4></center>
             	</div>
             </div>
-  
-	    	<div class="modal-body">
-	  			<!--18/07/17-->
-				<div id="talon" class=rows style="width: 400px; height: 300px; border: solid 1px blue; margin-left: 20px; margin-top: 20px;">
-					<div style="margin-left: 5px; margin-right: 5px; text-align: center; border-bottom: solid 1px;">
-						<h1>Талон №  <?php echo $talondata[0]["id"]; ?></h1>
-					</div>
-					<div style="margin-left: 10px;">
-						
-					    <h4><?php echo $talondata[0]["firm"]; ?></h4>
-						<h4><?php echo $talondata[0]["doctor"]; ?></h4>
-						<div class="container" style="margin-left: 5px; margin-right: 5px;>	
-							<div class="row">
-								<div class="col-md-4">
-									<div style="margin-left: 10px;">
-										<h5>ФИО Пациента:</h5>
-									</div>
-								</div>
-								<div class="col-md-8">
-									<div style="margin-left: 10px;">
-										<h5> Пипец,<?php echo $talondata[0]["client_fio"];?></h5>
-									</div>
-								</div>
-							</div>
-							<h5><?php echo $talondata[0]["appointtype"]; ?></h5>
-							<div class="row">
-								<div class="col-md-4">
-									<div style="margin-left: 10px;">
-										<h5>Дата Время:</h5>
-									</div>
-								</div>
-								<div class="col-md-8">
-									<div style="margin-left: 10px;">
-										<h5> <?php echo $talondata[0]["date_time"]; ?></h5>
-									</div>
-								</div>
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-md-4">
-									<div style="margin-left: 10px;">
-										<h5>Код отмены:</h5>
-									</div>
-								</div>
-								<div class="col-md-8">
-									<div style="margin-left: 10px;">
-										<h5> <?php echo $talondata[0]["cancel_code"]; ?></h5>
-									</div>
-								</div>
-							</div>
-					</div>
-				</div>
+            
+    <div class="modal-body">
+		<!--center><h4 id="modaltitle" class="modal-title">Запись на прием успешно завершена</h4></center-->
+					
+		<center>
+			<div id="talon" class="brd">
+				<table border="border" cellpadding="0" cellspacing="0">
+					</tr>
+						<td colspan="2" align="top"><center><?php echo $talondata[0]["firm"]; ?></center></td>
+					</tr>
+					<tr>
+						<td width="20%" max-width=80px><center><img src="../img/snake.jpg" width="30px" height="30px" align="middle" alt="x"></img></center></td>
+						<td border="2px" solid black><center> <h3>Талон № _12_</h3></center></td>
+					</tr>
+					<tr>
+						<td><?php echo $talondata[0]["date_time"]; ?></td>
+						<td align="right"><?php echo $talondata[0]["appointtype"]; ?></td>
+					</tr>
+					<tr>
+						<td> Отделение:</td>
+						<td><?php echo $talondata[0]["department"]; ?></td>
+					</tr>
+					<tr>
+						<td>Врач</td> 
+						<td><?php echo $talondata[0]["doctor"]; ?></td>
+					</tr>
+					<tr>
+						<td>Пациент:</td> 
+						<td><?php echo $talondata[0]["client_fio"];?></td>
+					</tr>
+					<tr>
+						<td>ID= <?php echo $talondata[0]["id"]; ?></td> 
+						<td>код отмены: <?php echo $talondata[0]["cancel_code"]; ?></td>
+					</tr>				
+					
+				</table>
+			</div>
+			
+	        <div id="talon-butt" class="form-group">
+	        	<br>
+	            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."://".$_SERVER['SERVER_NAME'];  ?>';">Закрыть</button>
+	            <button class="btn btn-primary"style="margin-left: 35px; type="save" onclick="javascript:savepdf()">
+	            <span aria-hidden="true" class="glyphicon glyphicon-Save"></span> Сохранить в PDF</button>
+			</div>
+		</center>
+
+
 				
-	            <div id="talon-butt" class="form-group">
-	                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."://".$_SERVER['SERVER_NAME'];  ?>';">Закрыть</button>
-	                <button class="btn btn-primary"style="margin-left: 35px; type="save" onclick=savepdf()>
-	                    <span aria-hidden="true" class="glyphicon glyphicon-Save"></span> Сохранить в PDF</button>
-				</div>
 			</div>
 		</div>
+	</div>
 </div>
-</div>
+</body>
