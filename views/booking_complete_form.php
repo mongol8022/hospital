@@ -1,147 +1,112 @@
+<!--Форма с талоном-->
 <!DOCTYPE html>
-
 <html>
+<head>
+	
+	<script src="js/jspdf.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-        <!-- http://getbootstrap.com/ -->
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
-
-        <link href="css/styles.css" rel="stylesheet"/>
-
-        <?php if (isset($title)): ?>
-            <title>Электронная регистратура: <?= htmlspecialchars($title) ?></title>
-        <?php else: ?>
-            <title>Электронная регистратура</title>
-        <?php endif ?>
-
-        <!-- https://jquery.com/ -->
-        <script src="/js/jquery-3.2.1.min.js"></script>
-
-        <!-- http://getbootstrap.com/ -->
-        <script src="/js/bootstrap.min.js"></script>
-
-        <script src="/js/scripts.js"></script>
-
-        <!-- bootstrap datetimepicker -->
-        <script src="/js/moment-with-locales.min.js"></script>
-        <script src="/js/bootstrap-datetimepicker.min.js"></script>
-        <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-
-    <body>
-
-        <header class="header-global">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="wrapper-header nav-container">
-                        <div class="logo">
-                            <a href="/index.php">
-                                <img class="img-responsive" src="img/snake.jpg" alt="#" id="logo">
-                            </a>
-                        </div>
-                        <div class="course-header">
-                            <h3>Онлайн-регистратура г. Краматорска</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+	<script type="text/javascript">
+        $(window).on('load',function(){
+            $('#talonmodal').modal('show');
+        });
         
-        <div class="container">            
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-                </button>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] == 'employ'): ?>
-                        <li><a href="doc_schedule.php">Моё расписание</a></li>
-                        <li><a href="doc_queue.php">Мой График приёма</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
-                    </ul>
-                    <?php endif ?>
-                    <?php if (!empty($_SESSION["user_id"]) && $_SESSION["usertype"] == 'admin'): ?>
-                        <li><a href="schedule.php">Расписания</a></li>
-                        <li><a href="livequeue.php">Графики в реальном времени</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Справочники
-                                <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="firms.php">Учреждения</a></li>
-                                    <li><a href="departments.php">Отделения</a></li>
-                                    <li><a href="workplaces.php">Рабочие места</a></li>
-                                </ul>
-                        </li>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
-                        </ul>
-                        <?php endif ?>
-                        <?php if (empty($_SESSION["user_id"])): ?>
-                        <?php
-                        if ($view == "getticket.php")
-                        {
-                            print("<li class=\"active\">");
-                        }
-                        else
-                        {
-                            print("<li>");
-                        }
-                        ?>
-                        <a href="index.php"><span class="glyphicon glyphicon-ok"></span> Записаться на прием</a></li>
-                        <?php
-                        if ($view == "cancel_form.php")
-                        {
-                            print("<li class=\"active\">");
-                        }
-                        else
-                        {
-                            print("<li>");
-                        }
-                        ?>
-                        <a data-toggle="modal" href="#cancelmodal"><span class="glyphicon glyphicon-remove"></span> Отмена приема</a></li>
-                        <li
-                        <?php
-                            if ($view == "medical_page.php")
-                            {
-                                print(" class=\"active\"");
-                            }
-                        ?>    
-                        ><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
-                        
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                        <?php
-                        if ($view == "login_form.php")
-                        {
-                            print("<li class=\"active\">");
-                        }
-                        else
-                        {
-                            print("<li>");
-                        }
-                        ?>
-                            <a data-toggle="modal" href="#LoginModal"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
-                        </ul>
-                        <?php endif ?>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    <?php
-    if (empty($_SESSION["user_id"]))
-        {
-            require("../views/login_form.php");
-            require("../views/cancel_modal.php");
-        }
-        ?>
-        <!--            <div id="middle"> -->
+    	//<!--Функция сохранения талона на диск(изодражение видимой части узла 1:1)-->
+		function savepdf() {
+			html2canvas(document.getElementById("talon"), {
+				onrendered:function(canvas) {
+					var img=canvas.toDataURL("image/png");
+						var doc = new jsPDF();
+						doc.addImage(img,'JPEG',20,10);
+						doc.save('talon.pdf');
+					}
+				});
+		} 
+	</script>
+
+<style type="text/css">
+
+	table {
+		border: 2px solid black;
+		width: 40%;
+		max-width: 400px;
+		min-width: 300px;
+	}
+	
+	td, tn {
+		padding: 3px; 
+		border: 0; 
+	}
+  </style>
+</head>
+
+
+
+<body>	
+
+
+    <!--script src="js/main.js"></script-->
+
+<div class="modal fade" data-keyboard="false" data-backdrop="static" id="talonmodal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+				<div id="titler">
+					<center><h4 id="modaltitle" class="modal-title">Запись на прием успешно завершена</h4></center>
+            	</div>
+            </div>
+            
+    <div class="modal-body">
+		<!--center><h4 id="modaltitle" class="modal-title">Запись на прием успешно завершена</h4></center-->
+					
+		<center>
+			<div id="talon" class="brd">
+				<table border="border" cellpadding="0" cellspacing="0">
+					</tr>
+						<td colspan="2" align="top"><center><?php echo $talondata[0]["firm"]; ?></center></td>
+					</tr>
+					<tr>
+						<td width="20%" max-width=80px><center><img src="../img/snake.jpg" width="30px" height="30px" align="middle" alt="x"></img></center></td>
+						<td border="2px" solid black><center> <h3>Талон № _12_</h3></center></td>
+					</tr>
+					<tr>
+						<td><?php echo $talondata[0]["date_time"]; ?></td>
+						<td align="right"><?php echo $talondata[0]["appointtype"]; ?></td>
+					</tr>
+					<tr>
+						<td> Отделение:</td>
+						<td><?php echo $talondata[0]["department"]; ?></td>
+					</tr>
+					<tr>
+						<td>Врач</td> 
+						<td><?php echo $talondata[0]["doctor"]; ?></td>
+					</tr>
+					<tr>
+						<td>Пациент:</td> 
+						<td><?php echo $talondata[0]["client_fio"];?></td>
+					</tr>
+					<tr>
+						<td>ID= <?php echo $talondata[0]["id"]; ?></td> 
+						<td>код отмены: <?php echo $talondata[0]["cancel_code"]; ?></td>
+					</tr>				
+					
+				</table>
+			</div>
+			
+	        <div id="talon-butt" class="form-group">
+	        	<br>
+	            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."://".$_SERVER['SERVER_NAME'];  ?>';">Закрыть</button>
+	            <button class="btn btn-primary"style="margin-left: 35px; type="save" onclick="javascript:savepdf()">
+	            <span aria-hidden="true" class="glyphicon glyphicon-Save"></span> Сохранить в PDF</button>
+			</div>
+		</center>
+
+
+				
+			</div>
+		</div>
+	</div>
+</div>
+</body>
