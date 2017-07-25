@@ -226,5 +226,5 @@ global $info;
            $(".alert").delay(4000).slideUp(200, function() {
                 $(this).alert('close');
             });
-            window.scrollTo(0, document.body.scrollHeight);
+//            window.scrollTo(0, document.body.scrollHeight);
 </script>

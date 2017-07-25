@@ -69,7 +69,7 @@
 					</tr>
 					<tr>
 						<td width="20%" max-width=80px><center><img src="../img/snake.jpg" width="30px" height="30px" align="middle" alt="x"></img></center></td>
-						<td border="2px" solid black><center> <h3>Талон № _12_</h3></center></td>
+						<td border="2px" solid black><center> <h3>Талон № <u><?php echo $talondata[0]["ticket_num"]; ?></u></h3></center></td>
 					</tr>
 					<tr>
 						<td><?php echo $talondata[0]["date_time"]; ?></td>

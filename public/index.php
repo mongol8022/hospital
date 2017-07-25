@@ -74,7 +74,7 @@
         $positions["firms"] =  $_POST["firm"];
         if (!empty($_POST["firm"]) && isset($datasets["firms"]) && $datasets["firms"])
         {
-            $departments = CS50::query("SELECT departments.id, departments.info, departments.name FROM firms, departments where departments.firm_id=firms.id and firms.id = ? order by 2", $_POST["firm"]);
+            $departments = CS50::query("SELECT departments.id, departments.info, departments.name FROM firms, departments where departments.firm_id=firms.id and firms.id = ? order by name", $_POST["firm"]);
             $datasets["departments"] = $departments;
         }
         if (!empty($_POST["department"]) && isset($datasets["departments"]) && $datasets["departments"])

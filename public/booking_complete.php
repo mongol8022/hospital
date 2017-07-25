@@ -15,7 +15,7 @@
         else
         {
             //print("success!");
-            $talondata = CS50::query("SELECT queues.id, firms.name as firm, departments.name as department, " 
+            $talondata = CS50::query("SELECT queues.id, queues.ticket_num, firms.name as firm, departments.name as department, " 
             ."CONCAT (workplaces.name,  ' ', workplaces.empl_surname, ' ', LEFT(workplaces.empl_name , 1), '.', "
             ."LEFT(workplaces.empl_lastname , 1), '.') as doctor, "
             ."CONCAT(services.name, ' (', services.duration, ' мин.)') as appointtype, "
