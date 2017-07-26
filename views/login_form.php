@@ -22,8 +22,8 @@
                                         
                                         <div class="form-group">
                                             <center>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                                             <button type="submit" class="btn btn-primary"><span aria-hidden="true" class="glyphicon glyphicon-log-in"></span> Войти</button>
+                                             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                                             </center>
                                         </div>
                                     </fieldset>

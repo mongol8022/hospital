@@ -68,7 +68,7 @@
 						<td colspan="2" align="top"><center><?php echo $talondata[0]["firm"]; ?></center></td>
 					</tr>
 					<tr>
-						<td width="20%" max-width=80px><center><img src="../img/snake.jpg" width="30px" height="30px" align="middle" alt="x"></img></center></td>
+						<td width="30%" max-width=90px><center><img src="../img/snake.jpg" width="30px" height="30px" align="middle" alt="x"></img></center></td>
 						<td border="2px" solid black><center> <h3>Талон № <u><?php echo $talondata[0]["ticket_num"]; ?></u></h3></center></td>
 					</tr>
 					<tr>
@@ -76,22 +76,21 @@
 						<td align="right"><?php echo $talondata[0]["appointtype"]; ?></td>
 					</tr>
 					<tr>
-						<td> Отделение:</td>
+						<td align="right" valign="top">Отделение:</td>
 						<td><?php echo $talondata[0]["department"]; ?></td>
 					</tr>
 					<tr>
-						<td>Врач</td> 
+						<td align="right" valign="top">Врач:</td> 
 						<td><?php echo $talondata[0]["doctor"]; ?></td>
 					</tr>
 					<tr>
-						<td>Пациент:</td> 
+						<td align="right" valign="top">Пациент:</td> 
 						<td><?php echo $talondata[0]["client_fio"];?></td>
 					</tr>
 					<tr>
-						<td>ID= <?php echo $talondata[0]["id"]; ?></td> 
-						<td>код отмены: <?php echo $talondata[0]["cancel_code"]; ?></td>
-					</tr>				
-					
+						<td align="right" valign="top">Код отмены:</td> 
+						<td><?php echo $talondata[0]["cancel_code"]; ?></td>
+					</tr>
 				</table>
 			</div>
 			

@@ -107,4 +107,8 @@
     }        
 mysqli_close ($db);
 }
+else
+{
+    redirect("/");
+}
 ?>

@@ -30,7 +30,11 @@
                     $_SESSION["user_id"] = $rows[0]["id"];
                     $_SESSION["username"] = $rows[0]["name"];
                     $_SESSION["usertype"] = $rows[0]["code"];
-//                    echo 'ok';
+                    if ($rows = CS50::query("SELECT CONCAT(workplaces.empl_surname, ' ', LEFT(workplaces.empl_name, 1), '.', LEFT(workplaces.empl_lastname, 1), '.') as name FROM workplaces,users WHERE users.id= ? and users.workplace_id=workplaces.id", $_SESSION["user_id"]))
+                    {
+                        $_SESSION["person"] = $rows[0]["name"];
+                    }
+                    //                    echo 'ok';
 
             }
         else 

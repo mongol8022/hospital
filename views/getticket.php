@@ -139,6 +139,8 @@ global $info;
                           </div>
                           <div class="modal-body">
                               <div id="bookingmodalcontent">
+                                    <div class="loader" id="loader1" style="display: none;"></div>
+                                    <div id=form_container>
                                     <form id="booking1">
                                         <fieldset>
                                             <div class="form-group">
@@ -164,6 +166,7 @@ global $info;
                                             </div>
                                         </fieldset>
                                     </form>
+                                    </div>
                                 </div>
                             </div>
  <!--                         </div> -->
@@ -181,6 +184,8 @@ global $info;
                                 $.ajax({
                                 type: 'GET',
                                 url: 'booking.php',
+                                beforeSend: function() { $('#form_container').hide(); $('#loader1').show();},
+                                complete: function() { $('#loader1').hide(); },
                                 data: $(that).serialize() + '&id=' + window.queue_id,
                                success: function(data) {
                                     //$("#modaltitle").html("Прием забронирован");

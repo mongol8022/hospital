@@ -52,7 +52,7 @@
         {
             //print $_SESSION["user_id"];
             //print $_SESSION["usertype"];
-            render("doc_graphic.php", ["title" => "Кабинет врача. Графики приема."]);
+            render("doc_graphic.php", ["title" => "Кабинет врача. Расписание."]);
         }
         
     }    

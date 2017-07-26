@@ -72,9 +72,31 @@
                         }
                         ?>
                         <a href="index.php">Моё расписание</a></li>
-                        <li><a href="doc_queue.php">Мой График приёма</a></li>
+                        <?php if ($view == "doc_queue_form.php")
+                        {
+                            print("<li class=\"active\">");
+                        }
+                        else
+                        {
+                            print("<li>");
+                        }
+                        ?>
+                        <a href="doc_queue.php">Мой График приёма</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                           
+                            <p class="navbar-text"> <span class="glyphicon glyphicon-user"></span>
+                                <?php 
+                                if (isset($_SESSION["person"]))
+                                {
+                                    echo ' '.$_SESSION["person"];
+                                }
+                                else
+                                {
+                                    echo ' '.$_SESSION["user_id"];
+                                }
+                                ?>
+                                </p>                        
                          <li><a data-toggle="modal" href="#logoutmodal"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
                     </ul>
                     <?php endif ?>
