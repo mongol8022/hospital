@@ -59,7 +59,7 @@
 #logo {
     width: 50px;
     float: left;
-    position: absolute;
+    position: relative;/*absolute;*/
     display: block;
 }
 

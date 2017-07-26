@@ -38,9 +38,9 @@
             <div class="container">
                 <div class="head-cont">
                     <div class="logo">
-                        <a href="/index.php">
-                            <img class="img-responsive" src="img/snake.jpg" alt="#" id="logo">
-                        </a>
+                            <a href="/index.php" title="Перейти на главную страничку">
+                                <img src="img/snake.jpg" alt="#" id="logo">
+                            </a>
                     </div>
                     <div>
                         <div class="head-text">
@@ -127,6 +127,7 @@
                         ><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
                         
                         </ul>
+                        
                         <ul class="nav navbar-nav navbar-right">
                         <?php
                         if ($view == "login_form.php")
@@ -141,12 +142,23 @@
                             <a data-toggle="modal" href="#LoginModal"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
                         </ul>
                         <?php endif ?>
+
+                        
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a data-toggle="modal" href="#AboutModal" title="О разработчиках"><span class="glyphicon glyphicon-info-sign"></span> О нас</a>
+                            </li>
+                        </ul>
+                        
+
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
+
     <?php
+    require("../views/about_form.php");
     if (empty($_SESSION["user_id"]))
         {
             require("../views/login_form.php");
