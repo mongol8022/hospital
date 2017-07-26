@@ -9,14 +9,14 @@
                 </div>
                 <div class="col-md-3 footer-middle-left">
                     <h5>Разработано при поддержке</h5>
-                            <a href="https://brainbasket.org/ru/technology-nation-3/">
+                            <a href="https://brainbasket.org/ru/technology-nation-3/" target="_blank">
                                 <img src="https://brainbasket.org/wp-content/uploads/logo-2.png" style="width: 200px; height: 42px;" alt="BrainBasket Foundation">
                             </a>
                         </div>
                         <div class="col-md-3 footer-middle-right">
                             <h5>Поделиться на своей странице</h5>
                             <?php
-                            $url = 'https://ide50-katatectic.cs50.io/index.php';
+                            $url = 'http://e-cherga.pp.ua/index.php';
                             ?>
                             <a href="http://www.facebook.com/sharer.php?s=100&p[url]=<?php echo urlencode( $url ); ?>" onclick="window.open(this.href, this.title, 'toolbar=0, status=0, width=548, height=325'); return false" title="Поделиться ссылкой в Фейсбуке" class="fa fa-facebook-official" style="font-size:42px"></a>
                             &nbsp
@@ -24,7 +24,7 @@
                             <!--    <i class="fa fa-twitter" style="font-size:42px"></i>-->
                             <!--</a>-->
                             <?php
-                            $url = 'https://ide50-katatectic.cs50.io/index.php';
+                            $url = 'http://e-cherga.pp.ua/index.php';
                             $hashtags = 'brain Basket, online-registration Kramatorsk';
                             ?>
                             <a href="http://twitter.com/share?text=<?php echo $title; ?>&via=twitterfeed&related=truemisha&hashtags=<?php echo $hashtags ?>&url=<?php echo $url; ?>" title="Поделиться ссылкой в Твиттере" onclick="window.open(this.href, this.title, 'toolbar=0, status=0, width=548, height=325'); return false" class="fa fa-twitter" style="font-size:42px"></a>
