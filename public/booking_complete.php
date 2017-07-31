@@ -1,7 +1,7 @@
 <?php 
  // configuration
     require("../includes/config.php"); 
-    if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET["code"]) and count($queue_id=CS50::query("SELECT id FROM queues WHERE confirm_code = ? AND TIMESTAMPDIFF ( MINUTE, queues.confirm_time, ? )  < 20 ", $_GET["code"], date("Y-m-d H:i:s"))))
+    if ($_SERVER["REQUEST_METHOD"] == "GET" and ((isset($_GET["code"]) and count($queue_id=CS50::query("SELECT id FROM queues WHERE confirm_code = ? AND TIMESTAMPDIFF ( MINUTE, queues.confirm_time, ? )  < 20 ", $_GET["code"], date("Y-m-d H:i:s")))) or (!empty($_SESSION["user_id"]) and !empty($_GET["id"]) and $queue_id=CS50::query("SELECT id FROM queues WHERE id = ? ", $_GET["id"]) and CS50::query("UPDATE queues SET person_surname = ?, person_name = ?, person_lastname = ?, date_born = ? WHERE id = ?", $_GET["surname"], $_GET["name"], $_GET["lastname"], $_GET["dateborn"], $_GET["id"]))))
     {
         //генерация уникального 10-значного цифрового кода отмены талона
         do {
@@ -24,7 +24,14 @@
             ."queues.cancel_code FROM queues, firms, departments, workplaces, schedule, services "
             ."WHERE queues.schedule_id=schedule.id and schedule.service_id=services.id and schedule.worplace_id=workplaces.id "
             ."and workplaces.department_id=departments.id and departments.firm_id=firms.id and queues.id = ? ", $queue_id[0]["id"]);
-             render("booking_complete_form.php", ["title" => "Запись на прием подтверждена", "talondata" => $talondata]);
+
+             if (!empty($_SESSION["user_id"]) and isset($_GET["id"]))
+                require("../views/booking_complete_form.php");
+             else {
+             
+                render("booking_complete_form.php", ["title" => "Запись на прием подтверждена", "talondata" => $talondata]);
+                
+             }
         }
     }
     //если не указан код, неверный код или метод пост, то ошибка 404 и завершение

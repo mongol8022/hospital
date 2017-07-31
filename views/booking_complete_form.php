@@ -1,8 +1,3 @@
-<!--Форма с талоном-->
-<!DOCTYPE html>
-<html>
-<head>
-	
 	<script src="js/jspdf.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
@@ -11,7 +6,8 @@
         $(window).on('load',function(){
             $('#talonmodal').modal('show');
         });
-        
+       // $('#talonmodal').on('hidden.bs.modal', function () {
+             
     	//<!--Функция сохранения талона на диск(изодражение видимой части узла 1:1)-->
 		function savepdf() {
 			html2canvas(document.getElementById("talon"), {
@@ -27,27 +23,20 @@
 
 <style type="text/css">
 
-	table {
+#talon table {
 		border: 2px solid black;
 		width: 40%;
 		max-width: 400px;
 		min-width: 300px;
 	}
 	
-	td, tn {
+#talon	td, tn {
 		padding: 3px; 
 		border: 0; 
 	}
   </style>
-</head>
 
-
-
-<body>	
-
-
-    <!--script src="js/main.js"></script-->
-
+<?php if (empty($_SESSION["user_id"]) and !isset($_GET["id"])): ?>
 <div class="modal fade" data-keyboard="false" data-backdrop="static" id="talonmodal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -60,7 +49,7 @@
             
     <div class="modal-body">
 		<!--center><h4 id="modaltitle" class="modal-title">Запись на прием успешно завершена</h4></center-->
-					
+<?php endif; ?>					
 		<center>
 			<div id="talon" class="brd">
 				<table border="border" cellpadding="0" cellspacing="0">
@@ -96,16 +85,24 @@
 			
 	        <div id="talon-butt" class="form-group">
 	        	<br>
-	            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."://".$_SERVER['SERVER_NAME'];  ?>';">Закрыть</button>
+	            <button type="button" id="closebutton" class="btn btn-default" data-dismiss="modal" onclick="
+	            <?php  
+	            if (!empty($_SESSION["user_id"]) && isset($_SESSION["usertype"]) && $_SESSION["usertype"] == 'employ')
+        			print("get_appoints($('#datetimepicker12').datetimepicker().data('DateTimePicker').date().format('Y-M-D'));");
+       			else
+       				print("window.location='/';");
+	            ?>
+	            ">Закрыть</button>
 	            <button class="btn btn-primary"style="margin-left: 35px; type="save" onclick="javascript:savepdf()">
 	            <span aria-hidden="true" class="glyphicon glyphicon-Save"></span> Сохранить в PDF</button>
 			</div>
 		</center>
 
+<?php if (empty($_SESSION["user_id"]) and !isset($_GET["id"])): ?>
 
 				
 			</div>
 		</div>
 	</div>
 </div>
-</body>
+<?php endif; ?>		
