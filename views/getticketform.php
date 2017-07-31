@@ -1,11 +1,11 @@
 <?php 
  global $info;
- $info = '<p>Здравствуйте! Вы находитесь на странице сайта, созданного в рамках <a href="https://brainbasket.org/" target="_blank">BrainBasket</a>.</p>'
+ $info = '<div style="text-align: justify; padding: 10px 10px 10px 10px"><p><h4 style="text-align:center;">Здравствуйте!</h4> Вы находитесь на странице сайта, созданного в рамках <a href="https://brainbasket.org/" target="_blank">BrainBasket</a>.</p>'
                     .'Проект разработан в качестве финального задания слушателями курса <a href="https://brainbasket.org/technology-nation/" target="_blank">Technology Nation</a>.</p>'
                     .'<p>С помощью данного сайта появилась возможность заказать талон на прием к врачу через интернет в любое удобно для Вас время!</p>'
                     .'<p>Также на сайте Вы найдете информацию о графике работы врачей и медицинских учреждений г. Краматорск Донецкой обл. с контактной информацией по каждому из них.</p>'
-                    .'<p>Спасибо за то, что Вы с нами!</p>' 
-                    .'<p>Здоровья Вам и Вашим близким! </p>';
+                    .'<div style="text-align: center"><p>Спасибо за то, что Вы с нами!</p>' 
+                    .'<p>Здоровья Вам и Вашим близким! </p></div></div>';
 ?>
 <div class="container">
     <div class="row">
