@@ -61,7 +61,9 @@
         <div class="col-md-6 visible-md visible-lg"> 
             <div class="panel panel-default">
                 <div class="panel-heading">Информация</div>
-                    <?php echo $info; ?>
+                    <div id="infopanel">
+                        <?php echo $info; ?>
+                    </div>
                 </div>
             </div>
         </div>  
@@ -181,7 +183,20 @@
             	beforeSend: function() { $('#loader').show() },
                 complete: function() { $('#loader').hide(); },
                 success: function(data) {
-               $("#panel1").append(data);
+                if (el_name == 'firmdiv') {
+                    //var datahtml = data;
+                    $('#infopanel').html("");
+                    if ($(data).filter('.text-hosp-information')) {
+                        $('#infopanel').html($(data).filter('.text-hosp-information'));
+                        $('#infopanel').append($(data).filter('.frame'));
+                    }
+                    else
+                        $('#infopanel').html('<?php echo $info; ?>');
+                    $('#panel1').append($(data).filter('#departmentdiv'));
+                    
+                }
+               else
+                    $("#panel1").append(data);
                 //$("#modaltitle").html("Прием забронирован");
                                     //$("#cancelformdiv").hide();
 //                     $("#appointfreemodalmsg").html("");

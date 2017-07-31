@@ -4,7 +4,7 @@
   {
     if (isset($_GET["action"]) and $_GET["action"] == "getappoints" and isset($_GET["date"]) and 
     
-     $result = CS50::query("SELECT queues.id, services.name AS servicename, TIME_FORMAT( TIME( queues.time_begin ) ,  '%H:%i' ) AS time_begin, "
+     $result = CS50::query("SELECT queues.id, CONCAT(services.name, ' (', services.duration, ' мин.)') AS servicename, TIME_FORMAT( TIME( queues.time_begin ) ,  '%H:%i' ) AS time_begin, "
 ."CASE WHEN queues.cancel_code IS NULL "
 ."THEN 0 "
 ."ELSE 1 "
@@ -17,12 +17,19 @@
 ."AND workplaces.id = schedule.worplace_id "
 ."AND workplaces.id =1 "
 ."AND schedule.week_day = WEEKDAY( ? ) "
-."AND DATE( queues.time_begin ) = ? ", date("Y-m-d H:i:s"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), $_GET["date"], $_GET["date"]))
+."AND DATE( queues.time_begin ) = ? ORDER BY 2,3", date("Y-m-d H:i:s"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), date("Y-m-d"), $_GET["date"], $_GET["date"]))
 //     print ("<div class=\"btn-group\">");
  {
      echo '<p><span style="color: #5cb85c;">&block;</span> - Приём свободен&emsp;&emsp;&emsp;&emsp;&emsp;<span style="color: #5bc0de;">&block;</span> - Приём забронирован&emsp;&emsp;&emsp;&emsp;&emsp;<span style="color: #337ab7;">&block;</span> - Приём занят</p><br>';
+     if ($result) {
+			        $servname = $result[0]["servicename"];
+			        echo '<div class="panel panel-default"><div class="panel-heading"><b>'.$result[0]["servicename"].'</b></div><div class="panel-body">';
      foreach ($result as $appointment)
       {
+        if ($servname <> $appointment["servicename"]) {
+			echo '</div></div>';
+			echo '<div class="panel panel-default"><div class="panel-heading"><b>'.$appointment["servicename"].'</b></div><div class="panel-body">';
+		}
         print("<div class=\"btn-group\"><button type=\"button\" id=\"freeappts\" name=\"".$appointment["id"]."\" data-toggle=\"dropdown\" class=\"dropdown-toggle btn ");
         if ($appointment["is_reserved"] == '1') 
           print ("btn-primary btn-lg\" type=\"button\" onclick=\"window.queue_id = this.getAttribute('name');\">".$appointment["time_begin"]."</button><ul class=\"dropdown-menu\"><li class=\"dropdown-header\">Пациент: ".$appointment["patient_name"].' '.$appointment["age"]."</li><li><a href=\"\" data-toggle=\"modal\" data-target=\"#appointfreemodal\">Освободить приём</a></li><li><a href=\"\" data-toggle=\"modal\" data-target=\"#appointdelmodal\">Удалить приём</a></li></ul></div>");
@@ -31,7 +38,10 @@
         else 
            print ("btn-success btn-lg\" type=\"button\" onclick=\"window.queue_id = this.getAttribute('name');\">".$appointment["time_begin"]."</button><ul class=\"dropdown-menu\"><li><a href=\"\" data-toggle=\"modal\" data-target=\"#appointmodal\">Записать на приём</a></li><li><a href=\"\" data-toggle=\"modal\" data-target=\"#appointdelmodal\">Удалить приём</a></li></ul></div>");
 //        print("btn-lg\" role=\"button\" onclick=\"window.queue_id = this.getAttribute('name');\">".$appointment["name"]."</button>\n");
+       
       }
+       echo '</div></div>';
+     }
 //    print ("</div>");
     }
     else if (isset($_GET["action"]) and $_GET["action"] == "getappoints" and isset($_GET["date"]) and isset($result) and !$result) {

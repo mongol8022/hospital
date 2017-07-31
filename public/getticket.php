@@ -21,6 +21,10 @@
         else 
             echo '<div class="alert alert-info">К сожалению в данный момент нет доступных медицинских учреждений.</div>';
         echo '</div>';
+        if ($result=CS50::query("SELECT info from firms where id = ? ", $_GET["firm_id"])) {
+            echo $result[0]["info"];
+        }
+        
 }
 elseif (isset($_GET["department"]) and !empty($_GET["department"])) {
         $datasets["workplaces"] = CS50::query("SELECT workplaces.id, CONCAT(empl_surname, ' ', empl_name, ' ', empl_lastname, '. ', workplaces.name) as name FROM departments,workplaces where workplaces.department_id=departments.id and departments.id = ? order by 2", $_GET["department"]);
@@ -70,7 +74,7 @@ elseif (isset($_GET["workplace"]) and !empty($_GET["workplace"])) {
 			        foreach ($datasets["appointments"] as $appointment) {
 				        if ($servname <> $appointment["servicename"]) {
 					        echo '</div></div>';
-					        echo '<div class="panel panel-default">div class="panel-heading"><b>'.$datasets["appointments"][0]["servicename"].'</b></div><div class="panel-body">';
+					        echo '<div class="panel panel-default"><div class="panel-heading"><b>'.$appointment["servicename"].'</b></div><div class="panel-body">';
 				        }
 			        echo '<div class="btn-group"><button type="button" id="freeappts" name="'.$appointment["id"].'" data-toggle="modal" data-target="#mymodal"  class="btn btn-success btn-lg" role="button" onclick="window.queue_id = this.getAttribute(\'name\');">'.$appointment["name"].'</button></div>';
 			        }

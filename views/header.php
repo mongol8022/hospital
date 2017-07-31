@@ -90,7 +90,7 @@
                             print("<li>");
                         }
                         ?>
-                        <a href="doc_queue.php">Мой График приёма</a></li>
+                        <a href="doc_queue.php">Мои приёмы</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                            
@@ -160,6 +160,9 @@
                         </ul>
                         
                         <ul class="nav navbar-nav navbar-right">
+                         <li>
+                                <a data-toggle="modal" href="#AboutModal" title="О разработчиках"><span class="glyphicon glyphicon-info-sign"></span> О нас</a>
+                        </li>
                         <?php
                         if ($view == "login_form.php")
                         {
@@ -175,11 +178,11 @@
                         <?php endif ?>
 
                         
-                        <ul class="nav navbar-nav navbar-right">
+<!--                        <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a data-toggle="modal" href="#AboutModal" title="О разработчиках"><span class="glyphicon glyphicon-info-sign"></span> О нас</a>
-                            </li>
-                        </ul>
+                            </li> 
+                        </ul> -->
                         
 
                         </div>
