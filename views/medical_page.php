@@ -82,9 +82,9 @@ function prevSlide() {
                     <div class="list-group">
                         <a href="kmu_hosp1.php" class="list-group-item">Коммунальное медицинское учреждение 
                         "Городская больница №1"</a>
-                        <a href="#" class="list-group-item">Коммунальное медицинское учреждение 
+                        <a href="kmu_hosp2.php" class="list-group-item">Коммунальное медицинское учреждение 
                         "Городская больница №2"</a>
-                        <a href="#" class="list-group-item">Коммунальное медицинское учреждение 
+                        <a href="kmu_hosp3.php" class="list-group-item">Коммунальное медицинское учреждение 
                         "Городская больница №3"</a>
                         <a href="#" class="list-group-item">Коммунальное учреждение "Центр 
                         первичной медико-санитарной помощи № 2 г.Краматорска"</a>

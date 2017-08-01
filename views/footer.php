@@ -6,7 +6,9 @@
             <div class="row">
                 <div class="col-md-3 footer-left">
                     <h5>Онлайн регистратура в медицинских учреждениях г.&nbspКраматорска</h5>
+					<a data-toggle="modal" href="#LicenseModal" title="Лицензии">license</a>
                 </div>
+                    <?php require("../views/license_form.php");?>
                 <div class="col-md-3 footer-middle-left">
                     <h5>Разработано при поддержке</h5>
                             <a href="https://brainbasket.org/ru/technology-nation-3/" target="_blank">
