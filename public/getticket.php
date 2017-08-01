@@ -75,6 +75,7 @@ elseif (isset($_GET["workplace"]) and !empty($_GET["workplace"])) {
 				        if ($servname <> $appointment["servicename"]) {
 					        echo '</div></div>';
 					        echo '<div class="panel panel-default"><div class="panel-heading"><b>'.$appointment["servicename"].'</b></div><div class="panel-body">';
+                             $servname = $appointment["servicename"];
 				        }
 			        echo '<div class="btn-group"><button type="button" id="freeappts" name="'.$appointment["id"].'" data-toggle="modal" data-target="#mymodal"  class="btn btn-success btn-lg" role="button" onclick="window.queue_id = this.getAttribute(\'name\');">'.$appointment["name"].'</button></div>';
 			        }

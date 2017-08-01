@@ -132,7 +132,7 @@
 }
 
 .modal-header {
-    background-color: #ddd;
+    background-color: #f8f8f8;
 }
 
 .spoiler > input + label:after{content: "+";float: right;font-family: monospace;font-weight: bold;}

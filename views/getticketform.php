@@ -69,11 +69,11 @@
         </div>  
       </div>
                                  <!-- всплывающее окно с формой заполнения данных для записи на прием -->
-                            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
-                      <div class="modal-content">
+                      <div class="modal-content" align="center">
                           <div class="modal-header">
-              <!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                               <h4 id="modaltitle" class="modal-title">Запись на прием</h4>
                           </div>
                           <div class="modal-body">
@@ -84,7 +84,7 @@
                                     <form id="booking1">
                                         <fieldset>
                                             <div class="form-group">
-                                                <input autofocus required class="form-control" name="surname" maxlength="255" style="text-transform: capitalize;" placeholder="Фамилия" type="text"/>
+                                                <input autofocus required class="form-control" id="surname" name="surname" maxlength="255" style="text-transform: capitalize;" placeholder="Фамилия" type="text"/>
                                             </div>
                                             <div class="form-group">
                                                 <input required class="form-control" name="name" maxlength="255" style="text-transform: capitalize;" placeholder="Имя" type="text"/>
@@ -119,7 +119,9 @@
            					</div> <!-- /.modal -->
                             <script type="text/javascript">
                                 $('#mymodal').on('shown.bs.modal', function() {
+                                    $('#surname').focus();
                                     $("#form_container").show();
+                                    
                                 })
                                 $('#mymodal').on('hidden.bs.modal', function() {
                                     $("#msgcontainer").hide();

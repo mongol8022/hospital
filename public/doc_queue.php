@@ -29,6 +29,7 @@
         if ($servname <> $appointment["servicename"]) {
 			echo '</div></div>';
 			echo '<div class="panel panel-default"><div class="panel-heading"><b>'.$appointment["servicename"].'</b></div><div class="panel-body">';
+			$servname = $appointment["servicename"];
 		}
         print("<div class=\"btn-group\"><button type=\"button\" id=\"freeappts\" name=\"".$appointment["id"]."\" data-toggle=\"dropdown\" class=\"dropdown-toggle btn ");
         if ($appointment["is_reserved"] == '1') 

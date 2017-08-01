@@ -1,9 +1,9 @@
 <div class="modal fade" id="cancelmodal" tabindex="-1" role="dialog">
                   <div class="modal-dialog">
-                      <div class="modal-content">
+                      <div class="modal-content" align="center">
                           <div class="modal-header">
                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <center><h4 id="modaltitle" class="modal-title">Отмена записи на прием</h4><center>
+                              <h4 id="modaltitle" class="modal-title">Отмена записи на прием</h4>
                           </div>
                           <div class="modal-body">
                               <div id="cancelmodalcontent">
@@ -14,10 +14,8 @@
                                                     <input autofocus required class="form-control" id="cancelcode" name="cancelcode" min="1" max="9999999999" placeholder="Введите код отмены записи на приём" type="number"/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <center>
                                                     <button type="submit" class="btn btn-primary">Отменить прием</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>  
-                                                    </center>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                                                 </div>
                                             </fieldset>
                                         </form>

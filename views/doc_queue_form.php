@@ -107,11 +107,11 @@
                     </div>
                 </div>
 <!--модальное окно записи на прием-->
-<div class="modal fade" data-keyboard="false" data-backdrop="static" id="appointmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="appointmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
-                      <div class="modal-content">
+                      <div class="modal-content" align="center">
                           <div class="modal-header">
-              <!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="get_appoints($('#datetimepicker12').datetimepicker().data('DateTimePicker').date().format('Y-M-D'));">&times;</button>
                               <h4 id="modaltitle" class="modal-title">Запись на прием</h4>
                           </div>
                           <div class="modal-body">

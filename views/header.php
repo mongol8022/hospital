@@ -127,7 +127,7 @@
                         <?php endif ?>
                         <?php if (empty($_SESSION["user_id"])): ?>
                         <?php
-                        if ($view == "getticket.php")
+                        if ($view == "getticketform.php")
                         {
                             print("<li class=\"active\">");
                         }
