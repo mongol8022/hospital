@@ -14,7 +14,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input required class="form-control" id="password" name="password" placeholder="Пароль" type="password"/>
-                                            <a tabindex="-1" href="resetpass.php">Забыли пароль?</a>
+                                            <a tabindex="-1" href="#">Забыли пароль?</a>
                                         </div>
              <!--                           <div class="form-group">
                                             

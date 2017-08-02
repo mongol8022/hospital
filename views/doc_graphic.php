@@ -28,12 +28,14 @@ $(function () {
         url: "graph_grid.php?oper=select",
         datatype: "xml",
         mtype: "GET",
-        colNames: ["Тип приёма", "День недели", "Время начала", "Количество", "Действительно с", "Действительно по","id", "Тип приёма", "workplace_id", "День недели"],
+        colNames: ["Тип приёма", "День недели", "Время начала", "Количество", "Работа в выходной", "Работа в выходной", "Действительно с", "Действительно по","id", "Тип приёма", "workplace_id", "День недели"],
         colModel: [
             { name: "service" },
             { name: "weekday_name" },
             { name: "time_begin", align: 'center', editable:true, editrules:{required:true }, formatter: 'date', formatoptions: {srcformat: 'H:i:s', newformat: 'H:i'}},
             { name: "count", align: 'center', editable:true, editrules:{required:true } },
+            { name: "holiday_work_name" },
+            { name: "holiday_work", hidden: true, editable: true, edittype: 'select', editoptions: {defaultValue: '0', value: "0:Нет; 1:Да"}, editrules:{edithidden: true, required:true } },
             { name: "valid_from", align: 'center', editable:true,  sorttype:'date', formatter: 'date', formatoptions: {newformat: 'd.m.Y'}, editrules:{required: true},editoptions: {
                 dataInit: function(element) {
                     $(element).datetimepicker({format: 'DD.MM.YYYY'})
@@ -54,7 +56,7 @@ $(function () {
         pager: "#pager",
         rowNum: 10,
         rowList: [10, 20, 30],
-        sortname: "id",
+        sortname: "week_day",
         sortorder: "asc",
         viewrecords: true,
         gridview: true,

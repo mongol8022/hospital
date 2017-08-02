@@ -52,9 +52,19 @@
     </head>
 
     <body>
-
+       <!-- изменения -->
+<div class = "left-doctor col-lg-2">
+    <img src = "img/doctor.png" />
+</div>
+    <!--     -->
         <header class="head-wrap">
             <div class="container">
+                <div class="alert alert-danger" align="center"><strong>Внимание!</strong> В данный момент мы работаем в тестовом режиме. Это означает, что Вы <b>НЕ</b> сможете записаться на приём к реальному врачу.</div>
+                <script>    
+                $(".alert").delay(8000).slideUp(200, function() {
+                $(this).alert('close');
+                });
+                </script>
                 <div class="head-cont">
                     <div class="logo">
                             <a href="/index.php" title="Перейти на главную страничку">
@@ -66,6 +76,9 @@
                                 <h3>Онлайн-регистратура г.&nbspКраматорска</h3>
                         </div>
                     </div>
+                <!-- изменение -->
+                    <div class = "header-pic"><img src = "img/header-pic.png"></div>
+                    <!--  -->
                 </div>
             </div>
         </header>
@@ -167,6 +180,16 @@
                         ?>    
                         ><a href="medical.php"><span class="glyphicon glyphicon-list-alt"></span> Мед. учреждения города</a></li>
                         
+                           <!-- изменение-->
+                         <li
+                        <?php
+                            if ($view == "feedback_page.php")
+                            {
+                                print(" class=\"active\"");
+                            }
+                        ?>    
+                        ><a href="feedback.php"><span class="glyphicon glyphicon-thumbs-up"></span> Отзывы</a></li>
+                        <!--   -->
                         </ul>
                         
                         <ul class="nav navbar-nav navbar-right">
@@ -200,7 +223,6 @@
                 </div>
             </nav>
         </div>
-
     <?php
     require("../views/about_form.php");
     if (empty($_SESSION["user_id"]))
