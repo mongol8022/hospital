@@ -11,7 +11,7 @@
                                                     <center>
                                                     <p>Вы действительно хотите выйти?</p>
                                                     <br><br>
-                                                    <a href="logout.php" class="btn btn-primary" role="button">Выйти</a>
+                                                    <a href="logout.php" class="btn btn-primary" role="button"><span aria-hidden="true" class="glyphicon glyphicon-log-out"></span> Выйти</a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>  
                                                     </center>
                                     </div>

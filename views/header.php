@@ -61,14 +61,14 @@
             <div class="container">
                 <div class="alert alert-danger" align="center"><strong>Внимание!</strong> В данный момент мы работаем в тестовом режиме. Это означает, что Вы <b>НЕ</b> сможете записаться на приём к реальному врачу.</div>
                 <script>    
-                $(".alert").delay(8000).slideUp(200, function() {
+                $(".alert").delay(8000).slideUp(300, function() {
                 $(this).alert('close');
                 });
                 </script>
                 <div class="head-cont">
                     <div class="logo">
                             <a href="/index.php" title="Перейти на главную страничку">
-                                <img src="img/snake.jpg" alt="#" id="logo">
+                                <img src="img/logo.png" alt="#" id="logo">
                             </a>
                     </div>
                     <div>

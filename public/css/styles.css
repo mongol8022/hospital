@@ -379,3 +379,16 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    box-sizing: border-box;
    padding: 10px;  
 }
+
+#about table tbody tr td img {
+    max-width:100%;
+    height:auto;
+}
+
+#about table tbody tr td {
+    vertical-align:middle;
+}
+
+body {
+    background-color:#B0E0E6;
+}
